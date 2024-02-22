@@ -1,16 +1,32 @@
-import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink, HStack } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 const NavigationBar = () => {
   return (
-    <HStack padding={3} backgroundColor={"gray.600"}>
-      <ChakraLink as={ReactRouterLink} to="/">
+    <HStack backgroundColor={"gray.600"} gap={0}>
+      <ChakraLink
+        as={NavLink}
+        to="/"
+        _activeLink={{ backgroundColor: "darkgreen" }}
+        p={3}
+      >
         HomePage
       </ChakraLink>
-      <ChakraLink as={ReactRouterLink} to="/shop">
+      <ChakraLink
+        as={NavLink}
+        className=""
+        to="/shop"
+        _activeLink={{ backgroundColor: "darkgreen" }}
+        p={3}
+      >
         Shop
       </ChakraLink>
-      <ChakraLink as={ReactRouterLink} to="/shop/item/1234">
+      <ChakraLink
+        as={NavLink}
+        to="/shop/item/1234"
+        _activeLink={{ backgroundColor: "darkgreen" }}
+        p={3}
+      >
         ArtDetailPage
       </ChakraLink>
     </HStack>
