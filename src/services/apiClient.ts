@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 export interface FetchDataResponse<T> {
   config: { iiif_url: string };
-  data: T[];
+  data: T;
 }
 
 const axiosInstance = axios.create({
@@ -18,13 +18,13 @@ class APIClient<T> {
 
   getAll = (config?: AxiosRequestConfig) =>
     axiosInstance
-      .get<FetchDataResponse<T>>(this.endpoint, config)
+      .get<FetchDataResponse<T[]>>(this.endpoint, config)
       .then((res) => res.data);
 
   get = (idOrSlug?: number | string, config?: AxiosRequestConfig) => {
-    if (idOrSlug === undefined) return {} as T;
+    if (idOrSlug === undefined) return {} as FetchDataResponse<T>;
     return axiosInstance
-      .get<T>(this.endpoint + "/" + idOrSlug, config)
+      .get<FetchDataResponse<T>>(this.endpoint + "/" + idOrSlug, config)
       .then((res) => res.data);
   };
 }

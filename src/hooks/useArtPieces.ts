@@ -5,7 +5,7 @@ import APIClient, { FetchDataResponse } from "../services/apiClient";
 const artPieceClient = new APIClient<ArtPiece>("/artworks");
 
 const useArtPieces = () => {
-  return useQuery<FetchDataResponse<ArtPiece>>({
+  return useQuery<FetchDataResponse<ArtPiece[]>>({
     queryKey: ["artPieces"],
     queryFn: artPieceClient.getAll,
     staleTime: 10 * 1000,
