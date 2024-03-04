@@ -7,6 +7,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import useArtPieces from "../hooks/useArtPieces";
+import getImageUrl from "../services/image-url";
 
 const HomePage = () => {
   const { data, error, isFetching } = useArtPieces();
@@ -28,7 +29,7 @@ const HomePage = () => {
           >
             <Box boxSize="sm">
               <Image
-                src={`${data?.config.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`}
+                src={getImageUrl(data.config.iiif_url, artwork.image_id)}
                 alt={artwork.title + "_image"}
               />
             </Box>
