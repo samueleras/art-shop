@@ -1,4 +1,11 @@
-import { Box, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  SimpleGrid,
+  Spinner,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 import useArtPieces from "../hooks/useArtPieces";
 
 const HomePage = () => {
@@ -19,6 +26,12 @@ const HomePage = () => {
             p={3}
             borderRadius={5}
           >
+            <Box boxSize="sm">
+              <Image
+                src={`${data?.config.iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`}
+                alt={artwork.title + "_image"}
+              />
+            </Box>
             <Text>Id: {artwork.id}</Text>
             <Text>Title: {artwork.title}</Text>
             <Text>Artist: {artwork.artist_title}</Text>
