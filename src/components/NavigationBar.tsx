@@ -1,5 +1,6 @@
 import { Link as ChakraLink, HStack } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 const NavigationBar = () => {
   return (
@@ -10,7 +11,7 @@ const NavigationBar = () => {
         _activeLink={{ backgroundColor: "darkgreen" }}
         p={3}
       >
-        HomePage
+        Home
       </ChakraLink>
       <ChakraLink
         as={NavLink}
@@ -27,8 +28,9 @@ const NavigationBar = () => {
         _activeLink={{ backgroundColor: "darkgreen" }}
         p={3}
       >
-        ArtDetailPage
+        CarDetailPage
       </ChakraLink>
+      <DarkModeSwitch />
     </HStack>
   );
 };
