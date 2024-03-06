@@ -1,14 +1,14 @@
 import {
+  Box,
   Link as ChakraLink,
   Flex,
-  useColorModeValue,
   Image,
-  Box,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import DarkModeSwitch from "./DarkModeSwitch";
 import logo from "../assets/logo.png";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 const NavigationBar = () => {
   const bgcolor = useColorModeValue("gray.700", "white");
@@ -58,32 +58,27 @@ const NavigationBar = () => {
           <ChakraLink
             as={NavLink}
             to="/"
-            _activeLink={{ backgroundColor: activeLink }}
+            color="gray.700"
+            _activeLink={{ backgroundColor: activeLink, color: "white" }}
             p={2.5}
             paddingInline={5}
-            borderRadius="1rem"
+            textAlign="center"
+            borderLeftRadius="1rem"
+            width="6rem"
           >
             Home
           </ChakraLink>
           <ChakraLink
             as={NavLink}
             to="/shop"
-            _activeLink={{ backgroundColor: activeLink }}
+            color="gray.700"
+            _activeLink={{ backgroundColor: activeLink, color: "white" }}
             p={2.5}
-            paddingInline={5}
-            borderRadius="1rem"
+            textAlign="center"
+            borderRightRadius="1rem"
+            width="6rem"
           >
             Shop
-          </ChakraLink>
-          <ChakraLink
-            as={NavLink}
-            to="/shop/item/1234"
-            _activeLink={{ backgroundColor: activeLink }}
-            p={2.5}
-            paddingInline={5}
-            borderRadius="1rem"
-          >
-            CarDetailPage
           </ChakraLink>
         </Flex>
       </Flex>
