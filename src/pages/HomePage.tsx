@@ -11,10 +11,8 @@ const HomePage = () => {
   return (
     <>
       <VStack>
-        <Box marginBlock={10}>
-          <Heading size="2xl" marginBottom={2}>
-            Welcome to DreamCars
-          </Heading>
+        <Box marginTop={8}>
+          <Heading size="2xl">Welcome to DreamCars</Heading>
         </Box>
 
         <Box p={3} borderRadius={5}>
