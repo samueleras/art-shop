@@ -6,7 +6,7 @@ const ShopPage = () => {
   return (
     <Grid width="100%" justifyItems="center">
       <Grid
-        width={{ base: "100%", md: "80%" }}
+        width={{ base: "100%", xl: "80%" }}
         marginTop={3}
         gridTemplateColumns={{ base: "1fr", md: "25% auto" }}
         templateAreas={{

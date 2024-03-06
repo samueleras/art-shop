@@ -1,4 +1,4 @@
-import { Card, Divider, VStack } from "@chakra-ui/react";
+import { Box, Card, Divider, VStack } from "@chakra-ui/react";
 import CarFilter from "./CarFilter";
 import ToggleBuyLeasing from "./ToggleBuyLeasing";
 
@@ -7,8 +7,10 @@ const ShopControls = () => {
     <Card>
       <VStack align="start" padding={3}>
         <ToggleBuyLeasing />
-        <Divider />
-        <CarFilter />
+        <Box display={{ base: "none", md: "block" }}>
+          <Divider />
+          <CarFilter />
+        </Box>
       </VStack>
     </Card>
   );
