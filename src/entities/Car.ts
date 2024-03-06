@@ -1,4 +1,4 @@
-export default interface ArtPiece {
+export default interface Car {
   id: number;
   title: string;
   image_id: string;
