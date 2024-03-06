@@ -5,7 +5,7 @@ export interface CarQuery {
   vehicleType?: "suv" | "coupe" | "convertible";
   gearboxType?: "automatic" | "manual";
   minHorsePower?: number;
-  isElectric?: boolean;
+  onlyElectric?: boolean;
   minPrice?: number;
   maxPrice?: number;
   minPassengersCount?: number;
@@ -16,11 +16,11 @@ export interface CarQuery {
 
 interface CarQueryStore {
   carQuery: CarQuery;
-  setBuyOrLease: (buyOrLease?: "buy" | "lease") => void;
+  toggleBuyOrLease: () => void;
   setVehicleType: (vehicleType?: "suv" | "coupe" | "convertible") => void;
   setGearboxType: (gearboxType?: "automatic" | "manual") => void;
   setMinHorsePower: (minHorsePower?: number) => void;
-  setIsElectric: (isElectric?: boolean) => void;
+  setOnlyElectric: (isElectric?: boolean) => void;
   setMinPrice: (minPrice?: number) => void;
   setMaxPrice: (maxPrice?: number) => void;
   setMinPassengersCount: (minPassengersCount?: number) => void;
@@ -30,17 +30,22 @@ interface CarQueryStore {
 }
 
 const useCarQueryStore = create<CarQueryStore>((set) => ({
-  carQuery: {} as CarQuery,
-  setBuyOrLease: (buyOrLease) =>
-    set((store) => ({ carQuery: { ...store.carQuery, buyOrLease } })),
+  carQuery: { buyOrLease: "buy", isElectric: false, pageSize: 10 } as CarQuery,
+  toggleBuyOrLease: () =>
+    set((store) => ({
+      carQuery: {
+        ...store.carQuery,
+        buyOrLease: store.carQuery.buyOrLease === "lease" ? "buy" : "lease",
+      },
+    })),
   setVehicleType: (vehicleType) =>
     set((store) => ({ carQuery: { ...store.carQuery, vehicleType } })),
   setGearboxType: (gearboxType) =>
     set((store) => ({ carQuery: { ...store.carQuery, gearboxType } })),
   setMinHorsePower: (minHorsePower) =>
     set((store) => ({ carQuery: { ...store.carQuery, minHorsePower } })),
-  setIsElectric: (isElectric) =>
-    set((store) => ({ carQuery: { ...store.carQuery, isElectric } })),
+  setOnlyElectric: (onlyElectric) =>
+    set((store) => ({ carQuery: { ...store.carQuery, onlyElectric } })),
   setMinPrice: (maxPrice) =>
     set((store) => ({ carQuery: { ...store.carQuery, maxPrice } })),
   setMaxPrice: (minPrice) =>
@@ -51,10 +56,20 @@ const useCarQueryStore = create<CarQueryStore>((set) => ({
     set((store) => ({ carQuery: { ...store.carQuery, sortOrder } })),
   setSearchText: (searchText) =>
     set((store) => ({
-      carQuery: { searchText, pageSize: store.carQuery.pageSize },
+      carQuery: {
+        searchText,
+        pageSize: store.carQuery.pageSize,
+        buyOrLease: store.carQuery.buyOrLease,
+      },
     })),
   setPageSize: (pageSize) =>
-    set((store) => ({ carQuery: { ...store.carQuery, pageSize } })),
+    set((store) => ({
+      carQuery: {
+        ...store.carQuery,
+        pageSize,
+        buyOrLease: store.carQuery.buyOrLease,
+      },
+    })),
 }));
 
 export default useCarQueryStore;

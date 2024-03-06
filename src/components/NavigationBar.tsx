@@ -14,7 +14,7 @@ const NavigationBar = () => {
   const bgcolor = useColorModeValue("gray.700", "white");
   const color = useColorModeValue("white", "gray.700");
   const logobg = useColorModeValue("black", "white");
-  let activeLink = "red.700";
+  let activeLink = "red.600";
 
   return (
     <Flex
