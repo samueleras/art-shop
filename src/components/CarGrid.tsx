@@ -14,7 +14,7 @@ const CarGrid = () => {
       gridTemplateColumns={{ base: "1fr", md: "1fr 1fr", lg: " 1fr 1fr 1fr" }}
     >
       {data?.data.map((car) => (
-        <CarCard car={car} imageUrl={data.config.iiif_url} key={car.id} />
+        <CarCard car={car} key={car.id} />
       ))}
     </Grid>
   );
