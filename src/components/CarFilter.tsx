@@ -1,5 +1,5 @@
 import { CloseIcon } from "@chakra-ui/icons";
-import { Button, Flex, Heading, Icon } from "@chakra-ui/react";
+import { Button, Flex, Heading, Icon, Select } from "@chakra-ui/react";
 import useCarQueryStore from "../carquery/store";
 import { GiCarDoor } from "react-icons/gi";
 import { IoMdPerson } from "react-icons/io";
@@ -29,22 +29,40 @@ const CarFilter = () => {
       >
         <Flex gap={3} alignItems={"center"}>
           <Icon as={FaCar} color={"gray.700"} />
-          <Button
-            fontSize="lg"
-            variant="link"
-            whiteSpace="normal"
-            textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
+          Type
+          <Select
+            onChange={(event) =>
+              query.setVehicleType(
+                event.target.value as
+                  | undefined
+                  | "coupe"
+                  | "convertible"
+                  | "suv"
+              )
+            }
           >
-            {"Type"}
-          </Button>
-          {query.carQuery.onlyElectric && (
-            <CloseIcon
-              boxSize={3.5}
-              cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
-            />
-          )}
+            <option
+              value={undefined}
+              selected={query.carQuery.vehicleType === undefined}
+            >
+              Any
+            </option>
+            <option
+              value="coupe"
+              selected={query.carQuery.vehicleType === "coupe"}
+            >
+              Coupe
+            </option>
+            <option
+              value="convertible"
+              selected={query.carQuery.vehicleType === "convertible"}
+            >
+              Convertible
+            </option>
+            <option value="suv" selected={query.carQuery.vehicleType === "suv"}>
+              SUV
+            </option>
+          </Select>
         </Flex>
         <Flex gap={3} alignItems={"center"}>
           <Icon as={BiDollarCircle} color={"gray.700"} />
