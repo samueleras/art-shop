@@ -1,5 +1,16 @@
 import { CloseIcon } from "@chakra-ui/icons";
-import { Button, Flex, Heading, Icon, Select } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 import useCarQueryStore from "../carquery/store";
 import { GiCarDoor } from "react-icons/gi";
 import { IoMdPerson } from "react-icons/io";
@@ -29,7 +40,7 @@ const CarFilter = () => {
       >
         <Flex gap={3} alignItems={"center"}>
           <Icon as={FaCar} color={"gray.700"} />
-          Type
+          <Text>Type</Text>
           <Select
             onChange={(event) =>
               query.setVehicleType(
@@ -40,41 +51,47 @@ const CarFilter = () => {
                   | "suv"
               )
             }
+            defaultValue={query.carQuery.vehicleType}
           >
-            <option
-              value={undefined}
-              selected={query.carQuery.vehicleType === undefined}
-            >
-              Any
-            </option>
-            <option
-              value="coupe"
-              selected={query.carQuery.vehicleType === "coupe"}
-            >
-              Coupe
-            </option>
-            <option
-              value="convertible"
-              selected={query.carQuery.vehicleType === "convertible"}
-            >
-              Convertible
-            </option>
-            <option value="suv" selected={query.carQuery.vehicleType === "suv"}>
-              SUV
-            </option>
+            <option value={undefined}>Any</option>
+            <option value="coupe">Coupe</option>
+            <option value="convertible">Convertible</option>
+            <option value="suv">SUV</option>
           </Select>
         </Flex>
         <Flex gap={3} alignItems={"center"}>
           <Icon as={BiDollarCircle} color={"gray.700"} />
-          <Button
-            fontSize="lg"
-            variant="link"
-            whiteSpace="normal"
-            textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
+          <Text>
+            {(query.carQuery.minPrice && query.carQuery.minPrice / 1000) || "0"}
+            k$
+          </Text>
+          <RangeSlider
+            aria-label={["min", "max"]}
+            min={0}
+            max={500000}
+            defaultValue={[
+              query.carQuery.minPrice || 0,
+              query.carQuery.maxPrice || 500000,
+            ]}
+            step={5000}
+            onChangeEnd={(value) => {
+              query.setMinPrice(value[0]);
+              value[1] === 500000
+                ? query.setMaxPrice(undefined)
+                : query.setMaxPrice(value[1]);
+            }}
           >
-            {"Price"}
-          </Button>
+            <RangeSliderTrack>
+              <RangeSliderFilledTrack />
+            </RangeSliderTrack>
+            <RangeSliderThumb index={0} boxSize="4" boxShadow="0 0 3px black" />
+            <RangeSliderThumb index={1} boxSize="4" boxShadow="0 0 3px black" />
+          </RangeSlider>
+          <Text whiteSpace="nowrap">
+            {!query.carQuery.maxPrice
+              ? "no limit"
+              : query.carQuery.maxPrice / 1000 + "k$"}
+          </Text>
           {query.carQuery.onlyElectric && (
             <CloseIcon
               boxSize={3.5}
