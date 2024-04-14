@@ -46,10 +46,10 @@ const useCarQueryStore = create<CarQueryStore>((set) => ({
     set((store) => ({ carQuery: { ...store.carQuery, minHorsePower } })),
   setOnlyElectric: (onlyElectric) =>
     set((store) => ({ carQuery: { ...store.carQuery, onlyElectric } })),
-  setMinPrice: (maxPrice) =>
-    set((store) => ({ carQuery: { ...store.carQuery, maxPrice } })),
-  setMaxPrice: (minPrice) =>
+  setMinPrice: (minPrice) =>
     set((store) => ({ carQuery: { ...store.carQuery, minPrice } })),
+  setMaxPrice: (maxPrice) =>
+    set((store) => ({ carQuery: { ...store.carQuery, maxPrice } })),
   setMinPassengersCount: (minPassengersCount) =>
     set((store) => ({ carQuery: { ...store.carQuery, minPassengersCount } })),
   setSortOrder: (sortOrder) =>
