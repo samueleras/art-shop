@@ -7,7 +7,7 @@ const ShopControls = () => {
     <Card>
       <VStack align="start" padding={3}>
         <ToggleBuyLeasing />
-        <Box display={{ base: "none", md: "block" }}>
+        <Box display={{ base: "none", md: "block" }} width="100%">
           <Divider />
           <CarFilter />
         </Box>
