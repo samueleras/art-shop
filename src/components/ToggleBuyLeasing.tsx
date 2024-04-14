@@ -15,7 +15,7 @@ const ToggleBuyLeasing = () => {
   } = useCarQueryStore();
 
   return (
-    <HStack w="12rem" gap={5}>
+    <HStack w="10rem" gap={5}>
       <Button
         onClick={() => buyOrLease === "lease" && toggleBuyOrLease()}
         variant="ghost"
@@ -34,7 +34,7 @@ const ToggleBuyLeasing = () => {
         <SliderTrack bg="red.600">
           <SliderFilledTrack bg="red.600" />
         </SliderTrack>
-        <SliderThumb boxSize={6} />
+        <SliderThumb boxSize={4} boxShadow="0 0 3px black" />
       </Slider>
       <Button
         onClick={() => buyOrLease === "buy" && toggleBuyOrLease()}
