@@ -11,6 +11,11 @@ import {
   RangeSliderThumb,
   RangeSliderTrack,
   Select,
+  Slider,
+  SliderFilledTrack,
+  SliderMark,
+  SliderThumb,
+  SliderTrack,
   Text,
 } from "@chakra-ui/react";
 import useCarQueryStore from "../carquery/store";
@@ -183,7 +188,48 @@ const CarFilter = () => {
 
         <Flex gap={3} alignItems={"center"}>
           <Icon as={GiHorseHead} color={"gray.700"} />
-          <Text fontSize="lg">Horsepower</Text>
+          <Text
+            fontSize="lg"
+            color={query.carQuery.minHorsePower ? "black" : "gray.500"}
+          >
+            Horsepower
+          </Text>
+          <Slider
+            value={
+              query.carQuery.minHorsePower
+                ? query.carQuery.minHorsePower / 20
+                : 0
+            }
+            onChange={(val) =>
+              query.setMinHorsePower(val > 0 ? val * 20 : undefined)
+            }
+          >
+            <SliderMark
+              value={
+                query.carQuery.minHorsePower
+                  ? query.carQuery.minHorsePower / 20
+                  : 1
+              }
+              textAlign="center"
+              bg="blue.500"
+              color="white"
+              mt="-10"
+              ml="-50"
+              w="24"
+              visibility={
+                query.carQuery.minHorsePower && query.carQuery.minHorsePower > 1
+                  ? "visible"
+                  : "hidden"
+              }
+            >
+              {query.carQuery.minHorsePower}+HP
+            </SliderMark>
+
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
