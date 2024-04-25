@@ -8,10 +8,10 @@ const ShopPage = () => {
       <Grid
         width={{ base: "100%", xl: "80%" }}
         marginTop={3}
-        gridTemplateColumns={{ base: "1fr", md: "25% auto" }}
+        gridTemplateColumns={{ base: "1fr", lg: "25% auto" }}
         templateAreas={{
           base: `"controls" "carGrid"`,
-          md: `"controls carGrid"`,
+          lg: `"controls carGrid"`,
         }}
         gap={3}
       >

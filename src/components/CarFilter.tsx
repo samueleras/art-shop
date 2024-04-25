@@ -113,7 +113,7 @@ const CarFilter = () => {
               query.setPassengerCount(parseInt(value) || undefined);
             }}
           >
-            <Flex gap={3}>
+            <Flex gap={2}>
               <Radio value="2">2</Radio>
               <Radio value="4">4</Radio>
               <Radio value="any">Any</Radio>
@@ -130,7 +130,7 @@ const CarFilter = () => {
               query.setDoorCount(parseInt(value) || undefined);
             }}
           >
-            <Flex gap={3}>
+            <Flex gap={2}>
               <Radio value="2">2</Radio>
               <Radio value="4">4</Radio>
               <Radio value="any">Any</Radio>
