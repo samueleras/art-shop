@@ -42,7 +42,7 @@ const CarFilter = () => {
       >
         <Flex gap={3} alignItems={"center"}>
           <Icon as={FaCar} color={"gray.700"} />
-          <Text>Type</Text>
+          <Text fontSize="lg">Type</Text>
           <Select
             onChange={(event) => {
               query.setVehicleType(
@@ -101,7 +101,7 @@ const CarFilter = () => {
 
         <Flex gap={3} alignItems={"center"}>
           <Icon as={IoMdPerson} color={"gray.700"} />
-          <Text>Seats</Text>
+          <Text fontSize="lg">Seats</Text>
           <RadioGroup
             value={query.carQuery.passengerCount?.toString() || "any"}
             onChange={(value) => {
@@ -118,7 +118,7 @@ const CarFilter = () => {
 
         <Flex gap={3} alignItems={"center"}>
           <Icon as={GiCarDoor} color={"gray.700"} />
-          <Text>Doors</Text>
+          <Text fontSize="lg">Doors</Text>
           <RadioGroup
             value={query.carQuery.doorCount?.toString() || "any"}
             onChange={(value) => {
@@ -140,15 +140,19 @@ const CarFilter = () => {
             variant="link"
             whiteSpace="normal"
             textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
+            color={
+              query.carQuery.gearboxType == "automatic" ? "gray.500" : "black"
+            }
+            fontWeight="normal"
+            onClick={() => query.setGearboxType("manual")}
           >
             {"Manual"}
           </Button>
-          {query.carQuery.onlyElectric && (
+          {query.carQuery.gearboxType == "manual" && (
             <CloseIcon
               boxSize={3.5}
               cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
+              onClick={() => query.setGearboxType(undefined)}
             />
           )}
         </Flex>
@@ -160,37 +164,26 @@ const CarFilter = () => {
             variant="link"
             whiteSpace="normal"
             textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
+            color={
+              query.carQuery.gearboxType == "manual" ? "gray.500" : "black"
+            }
+            fontWeight="normal"
+            onClick={() => query.setGearboxType("automatic")}
           >
             {"Automatic"}
           </Button>
-          {query.carQuery.onlyElectric && (
+          {query.carQuery.gearboxType == "automatic" && (
             <CloseIcon
               boxSize={3.5}
               cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
+              onClick={() => query.setGearboxType(undefined)}
             />
           )}
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
           <Icon as={GiHorseHead} color={"gray.700"} />
-          <Button
-            fontSize="lg"
-            variant="link"
-            whiteSpace="normal"
-            textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
-          >
-            {"Horsepower"}
-          </Button>
-          {query.carQuery.onlyElectric && (
-            <CloseIcon
-              boxSize={3.5}
-              cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
-            />
-          )}
+          <Text fontSize="lg">Horsepower</Text>
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
@@ -200,9 +193,11 @@ const CarFilter = () => {
             variant="link"
             whiteSpace="normal"
             textAlign="left"
+            color={query.carQuery.onlyElectric ? "black" : "gray.500"}
+            fontWeight="normal"
             onClick={() => query.setOnlyElectric(true)}
           >
-            {"Electric"}
+            {"Electric Cars Only"}
           </Button>
           {query.carQuery.onlyElectric && (
             <CloseIcon
