@@ -4,6 +4,8 @@ import {
   Flex,
   Heading,
   Icon,
+  Radio,
+  RadioGroup,
   RangeSlider,
   RangeSliderFilledTrack,
   RangeSliderThumb,
@@ -42,23 +44,26 @@ const CarFilter = () => {
           <Icon as={FaCar} color={"gray.700"} />
           <Text>Type</Text>
           <Select
-            onChange={(event) =>
+            onChange={(event) => {
               query.setVehicleType(
-                event.target.value as
-                  | undefined
-                  | "coupe"
-                  | "convertible"
-                  | "suv"
-              )
-            }
+                event.target.value == "any"
+                  ? undefined
+                  : (event.target.value as
+                      | undefined
+                      | "coupe"
+                      | "convertible"
+                      | "suv")
+              );
+            }}
             defaultValue={query.carQuery.vehicleType}
           >
-            <option value={undefined}>Any</option>
+            <option value="any">Any</option>
             <option value="coupe">Coupe</option>
             <option value="convertible">Convertible</option>
             <option value="suv">SUV</option>
           </Select>
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={BiDollarCircle} color={"gray.700"} />
           <Text minWidth="2.7rem" textAlign="right">
@@ -93,44 +98,41 @@ const CarFilter = () => {
               : query.carQuery.maxPrice / 1000 + "k$"}
           </Text>
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={IoMdPerson} color={"gray.700"} />
-          <Button
-            fontSize="lg"
-            variant="link"
-            whiteSpace="normal"
-            textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
+          <Text>Seats</Text>
+          <RadioGroup
+            value={query.carQuery.passengerCount?.toString() || "any"}
+            onChange={(value) => {
+              query.setPassengerCount(parseInt(value) || undefined);
+            }}
           >
-            {"Seats"}
-          </Button>
-          {query.carQuery.onlyElectric && (
-            <CloseIcon
-              boxSize={3.5}
-              cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
-            />
-          )}
+            <Flex gap={3}>
+              <Radio value="2">2</Radio>
+              <Radio value="4">4</Radio>
+              <Radio value="any">Any</Radio>
+            </Flex>
+          </RadioGroup>
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={GiCarDoor} color={"gray.700"} />
-          <Button
-            fontSize="lg"
-            variant="link"
-            whiteSpace="normal"
-            textAlign="left"
-            onClick={() => query.setOnlyElectric(true)}
+          <Text>Doors</Text>
+          <RadioGroup
+            value={query.carQuery.doorCount?.toString() || "any"}
+            onChange={(value) => {
+              query.setDoorCount(parseInt(value) || undefined);
+            }}
           >
-            {"Doors"}
-          </Button>
-          {query.carQuery.onlyElectric && (
-            <CloseIcon
-              boxSize={3.5}
-              cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
-            />
-          )}
+            <Flex gap={3}>
+              <Radio value="2">2</Radio>
+              <Radio value="4">4</Radio>
+              <Radio value="any">Any</Radio>
+            </Flex>
+          </RadioGroup>
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={TbManualGearbox} color={"gray.700"} />
           <Button
@@ -150,6 +152,7 @@ const CarFilter = () => {
             />
           )}
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={TbAutomaticGearbox} color={"gray.700"} />
           <Button
@@ -169,6 +172,7 @@ const CarFilter = () => {
             />
           )}
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={GiHorseHead} color={"gray.700"} />
           <Button
@@ -188,6 +192,7 @@ const CarFilter = () => {
             />
           )}
         </Flex>
+
         <Flex gap={3} alignItems={"center"}>
           <Icon as={MdElectricCar} color={"gray.700"} />
           <Button
