@@ -8,7 +8,8 @@ export interface CarQuery {
   onlyElectric?: boolean;
   minPrice?: number;
   maxPrice?: number;
-  minPassengersCount?: number;
+  passengerCount?: number;
+  doorCount?: number;
   sortOrder?: string;
   searchText?: string;
   pageSize?: number;
@@ -23,7 +24,8 @@ interface CarQueryStore {
   setOnlyElectric: (isElectric?: boolean) => void;
   setMinPrice: (minPrice?: number) => void;
   setMaxPrice: (maxPrice?: number) => void;
-  setMinPassengersCount: (minPassengersCount?: number) => void;
+  setPassengerCount: (minPassengersCount?: number) => void;
+  setDoorCount: (minPassengersCount?: number) => void;
   setSortOrder: (sortOrder?: string) => void;
   setSearchText: (searchText?: string) => void;
   setPageSize: (pageSize?: number) => void;
@@ -50,8 +52,10 @@ const useCarQueryStore = create<CarQueryStore>((set) => ({
     set((store) => ({ carQuery: { ...store.carQuery, minPrice } })),
   setMaxPrice: (maxPrice) =>
     set((store) => ({ carQuery: { ...store.carQuery, maxPrice } })),
-  setMinPassengersCount: (minPassengersCount) =>
-    set((store) => ({ carQuery: { ...store.carQuery, minPassengersCount } })),
+  setPassengerCount: (passengerCount) =>
+    set((store) => ({ carQuery: { ...store.carQuery, passengerCount } })),
+  setDoorCount: (doorCount) =>
+    set((store) => ({ carQuery: { ...store.carQuery, doorCount } })),
   setSortOrder: (sortOrder) =>
     set((store) => ({ carQuery: { ...store.carQuery, sortOrder } })),
   setSearchText: (searchText) =>
