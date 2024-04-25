@@ -61,7 +61,7 @@ const CarFilter = () => {
         </Flex>
         <Flex gap={3} alignItems={"center"}>
           <Icon as={BiDollarCircle} color={"gray.700"} />
-          <Text>
+          <Text minWidth="2.7rem" textAlign="right">
             {(query.carQuery.minPrice && query.carQuery.minPrice / 1000) || "0"}
             k$
           </Text>
@@ -74,7 +74,7 @@ const CarFilter = () => {
               query.carQuery.maxPrice || 500000,
             ]}
             step={5000}
-            onChangeEnd={(value) => {
+            onChange={(value) => {
               query.setMinPrice(value[0]);
               value[1] === 500000
                 ? query.setMaxPrice(undefined)
@@ -87,18 +87,11 @@ const CarFilter = () => {
             <RangeSliderThumb index={0} boxSize="4" boxShadow="0 0 3px black" />
             <RangeSliderThumb index={1} boxSize="4" boxShadow="0 0 3px black" />
           </RangeSlider>
-          <Text whiteSpace="nowrap">
+          <Text whiteSpace="nowrap" minWidth="3.5rem">
             {!query.carQuery.maxPrice
               ? "no limit"
               : query.carQuery.maxPrice / 1000 + "k$"}
           </Text>
-          {query.carQuery.onlyElectric && (
-            <CloseIcon
-              boxSize={3.5}
-              cursor="pointer"
-              onClick={() => query.setOnlyElectric(undefined)}
-            />
-          )}
         </Flex>
         <Flex gap={3} alignItems={"center"}>
           <Icon as={IoMdPerson} color={"gray.700"} />
