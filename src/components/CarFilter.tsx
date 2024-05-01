@@ -17,6 +17,7 @@ import {
   SliderThumb,
   SliderTrack,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import useCarQueryStore from "../carquery/store";
 import { GiCarDoor } from "react-icons/gi";
@@ -31,6 +32,7 @@ const CarFilter = () => {
   //get List of Filters including icons
   // const { data, error, isFetching } = useFilters();
   const query = useCarQueryStore();
+  const color = useColorModeValue("gray.700", "gray.100");
 
   //if (error) throw error;
 
@@ -46,7 +48,7 @@ const CarFilter = () => {
         flexDir={"column"}
       >
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={FaCar} color={"gray.700"} />
+          <Icon as={FaCar} color={color} />
           <Text fontSize="lg">Type</Text>
           <Select
             onChange={(event) => {
@@ -70,7 +72,7 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={BiDollarCircle} color={"gray.700"} />
+          <Icon as={BiDollarCircle} color={color} />
           <Text minWidth="2.7rem" textAlign="right">
             {(query.carQuery.minPrice && query.carQuery.minPrice / 1000) || "0"}
             k$
@@ -105,7 +107,7 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={IoMdPerson} color={"gray.700"} />
+          <Icon as={IoMdPerson} color={color} />
           <Text fontSize="lg">Seats</Text>
           <RadioGroup
             value={query.carQuery.passengerCount?.toString() || "any"}
@@ -122,7 +124,7 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={GiCarDoor} color={"gray.700"} />
+          <Icon as={GiCarDoor} color={color} />
           <Text fontSize="lg">Doors</Text>
           <RadioGroup
             value={query.carQuery.doorCount?.toString() || "any"}
@@ -139,14 +141,14 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={TbManualGearbox} color={"gray.700"} />
+          <Icon as={TbManualGearbox} color={color} />
           <Button
             fontSize="lg"
             variant="link"
             whiteSpace="normal"
             textAlign="left"
             color={
-              query.carQuery.gearboxType == "automatic" ? "gray.500" : "black"
+              query.carQuery.gearboxType == "automatic" ? "gray.500" : color
             }
             fontWeight="normal"
             onClick={() => query.setGearboxType("manual")}
@@ -163,15 +165,13 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={TbAutomaticGearbox} color={"gray.700"} />
+          <Icon as={TbAutomaticGearbox} color={color} />
           <Button
             fontSize="lg"
             variant="link"
             whiteSpace="normal"
             textAlign="left"
-            color={
-              query.carQuery.gearboxType == "manual" ? "gray.500" : "black"
-            }
+            color={query.carQuery.gearboxType == "manual" ? "gray.500" : color}
             fontWeight="normal"
             onClick={() => query.setGearboxType("automatic")}
           >
@@ -187,10 +187,10 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={GiHorseHead} color={"gray.700"} />
+          <Icon as={GiHorseHead} color={color} />
           <Text
             fontSize="lg"
-            color={query.carQuery.minHorsePower ? "black" : "gray.500"}
+            color={query.carQuery.minHorsePower ? color : "gray.500"}
           >
             Horsepower
           </Text>
@@ -211,9 +211,7 @@ const CarFilter = () => {
                   : 1
               }
               textAlign="center"
-              bg="blue.500"
-              color="white"
-              mt="-10"
+              mt="-8"
               ml="-50"
               w="24"
               visibility={
@@ -233,13 +231,13 @@ const CarFilter = () => {
         </Flex>
 
         <Flex gap={3} alignItems={"center"}>
-          <Icon as={MdElectricCar} color={"gray.700"} />
+          <Icon as={MdElectricCar} color={color} />
           <Button
             fontSize="lg"
             variant="link"
             whiteSpace="normal"
             textAlign="left"
-            color={query.carQuery.onlyElectric ? "black" : "gray.500"}
+            color={query.carQuery.onlyElectric ? color : "gray.500"}
             fontWeight="normal"
             onClick={() => query.setOnlyElectric(true)}
           >
