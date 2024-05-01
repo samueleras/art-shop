@@ -32,7 +32,7 @@ const ToggleBuyLeasing = () => {
         value={buyOrLease === "buy" ? 0 : 1}
       >
         <SliderTrack bg="red.600">
-          <SliderFilledTrack bg="red.600" />
+          <SliderFilledTrack />
         </SliderTrack>
         <SliderThumb boxSize={4} boxShadow="0 0 3px black" />
       </Slider>

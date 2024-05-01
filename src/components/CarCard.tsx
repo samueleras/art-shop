@@ -55,11 +55,11 @@ const CarCard = ({ car }: Props) => {
           <CarPropertyIconBar car={carProperties} />
           <Text>{"A Celebration of Excellence"}</Text>
           <Text>{"720 HP"}</Text>
-          <Text color="blue.600" fontSize="2xl" mb="3">
+          <Text fontSize="2xl" mb="3">
             {buyOrLease === "buy" ? "$266,661" : "$1200 leasing rate"}
           </Text>
         </Stack>
-        <Button variant="solid" colorScheme="blue" gap={3}>
+        <Button variant="solid" gap={3}>
           <Icon as={FaCartShopping} color={"gray.700"} />
           Add to cart
         </Button>

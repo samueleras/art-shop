@@ -7,7 +7,6 @@ const DarkModeSwitch = () => {
     <FormControl display="flex" alignItems="center" h="100%" gap="1rem" w="">
       <Switch
         id="darkmode"
-        colorScheme="green"
         onChange={toggleColorMode}
         isChecked={colorMode === "dark" ? true : false}
       />
