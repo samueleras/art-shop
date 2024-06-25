@@ -1,10 +1,16 @@
 export default interface Car {
   id: number;
-  title: string;
-  image_id: string;
-  date_end: number;
-  artist_title: string;
-  artist_display: string;
-  dimensions: string;
-  department_title: string;
+  brand: string;
+  model: string;
+  type: "coupe" | "convertible" | "suv";
+  price: number;
+  leasing: number;
+  passengerCount: number;
+  doorCount: number;
+  gearbox: "automatic" | "manual";
+  horsepower: number;
+  electric: boolean;
+  description?: string;
+  thumbnail: string;
+  images?: string[];
 }
