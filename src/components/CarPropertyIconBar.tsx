@@ -5,33 +5,26 @@ import { IoMdPerson } from "react-icons/io";
 import { MdElectricCar } from "react-icons/md";
 import { TbAutomaticGearbox, TbManualGearbox } from "react-icons/tb";
 import CarPropertyIcon from "./CarPropertyIcon";
+import Car from "../entities/Car";
 
 interface Props {
-  car: {
-    doors?: number;
-    passengers?: number;
-    transmission?: string;
-    isElectric?: boolean;
-  };
+  car: Car;
 }
 
 const CarPropertyIconBar = ({ car }: Props) => {
   return (
     <>
-      <Flex gap={2}>
-        {car.passengers && car.passengers !== 0 && (
-          <CarPropertyIcon icon={IoMdPerson} property={car.passengers} />
+      <Flex gap={2} flexWrap="wrap">
+        {car.passengerCount && car.passengerCount !== 0 && (
+          <CarPropertyIcon icon={IoMdPerson} property={car.passengerCount} />
         )}
-        <CarPropertyIcon icon={GiCarDoor} property={car.doors} />
-        {car.transmission === "manual" ? (
-          <CarPropertyIcon icon={TbManualGearbox} property={car.transmission} />
+        <CarPropertyIcon icon={GiCarDoor} property={car.doorCount} />
+        {car.gearbox === "manual" ? (
+          <CarPropertyIcon icon={TbManualGearbox} property={car.gearbox} />
         ) : (
-          <CarPropertyIcon
-            icon={TbAutomaticGearbox}
-            property={car.transmission}
-          />
+          <CarPropertyIcon icon={TbAutomaticGearbox} property={car.gearbox} />
         )}
-        {car.isElectric === true && <CarPropertyIcon icon={MdElectricCar} />}
+        {car.electric === true && <CarPropertyIcon icon={MdElectricCar} />}
       </Flex>
     </>
   );
