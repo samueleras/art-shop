@@ -3,7 +3,7 @@ import Layout from "../pages/Layout";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import ShopPage from "../pages/ShopPage";
-import ArtDetailPage from "../pages/ArtDetailPage";
+import CarDetailPage from "../pages/CarDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "shop", element: <ShopPage /> },
-      { path: "shop/item/:id", element: <ArtDetailPage /> },
+      { path: "shop/item/:id", element: <CarDetailPage /> },
     ],
   },
 ]);
