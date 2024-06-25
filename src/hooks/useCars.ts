@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import APIClient, { FetchDataResponse } from "../services/apiClient";
 import Car from "../entities/Car";
 
-const artPieceClient = new APIClient<Car>("/artworks");
+const artPieceClient = new APIClient<Car>("/cars");
 
-const useArtPieces = () => {
+const useCars = () => {
   return useQuery<FetchDataResponse<Car[]>>({
     queryKey: ["cars"],
     queryFn: artPieceClient.getAll,
@@ -12,4 +12,4 @@ const useArtPieces = () => {
   });
 };
 
-export default useArtPieces;
+export default useCars;

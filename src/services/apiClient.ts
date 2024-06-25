@@ -6,7 +6,7 @@ export interface FetchDataResponse<T> {
 }
 
 const axiosInstance = axios.create({
-  baseURL: "https://api.artic.edu/api/v1/",
+  baseURL: "https://api.artic.edu/api/v1/", //Backend URl
 });
 
 class APIClient<T> {
