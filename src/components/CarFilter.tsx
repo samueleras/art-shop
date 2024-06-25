@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Heading,
-  Icon,
   Radio,
   RadioGroup,
   RangeSlider,
@@ -19,14 +18,14 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import useCarQueryStore from "../carquery/store";
-import { GiCarDoor } from "react-icons/gi";
+import { BiDollarCircle } from "react-icons/bi";
+import { FaCar } from "react-icons/fa";
+import { GiCarDoor, GiHorseHead } from "react-icons/gi";
 import { IoMdPerson } from "react-icons/io";
 import { MdElectricCar } from "react-icons/md";
 import { TbAutomaticGearbox, TbManualGearbox } from "react-icons/tb";
-import { BiDollarCircle } from "react-icons/bi";
-import { GiHorseHead } from "react-icons/gi";
-import { FaCar } from "react-icons/fa";
+import useCarQueryStore from "../carquery/store";
+import FilterContainer from "./FilterContainer";
 
 const CarFilter = () => {
   //get List of Filters including icons
@@ -47,8 +46,7 @@ const CarFilter = () => {
         justifyContent="space-between"
         flexDir={"column"}
       >
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={FaCar} color={color} />
+        <FilterContainer icon={FaCar} color={color}>
           <Text fontSize="lg">Type</Text>
           <Select
             onChange={(event) => {
@@ -69,10 +67,9 @@ const CarFilter = () => {
             <option value="convertible">Convertible</option>
             <option value="suv">SUV</option>
           </Select>
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={BiDollarCircle} color={color} />
+        <FilterContainer icon={BiDollarCircle} color={color}>
           <Text minWidth="2.7rem" textAlign="right">
             {(query.carQuery.minPrice && query.carQuery.minPrice / 1000) || "0"}
             k$
@@ -104,10 +101,9 @@ const CarFilter = () => {
               ? "no limit"
               : query.carQuery.maxPrice / 1000 + "k$"}
           </Text>
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={IoMdPerson} color={color} />
+        <FilterContainer icon={IoMdPerson} color={color}>
           <Text fontSize="lg">Seats</Text>
           <RadioGroup
             value={query.carQuery.passengerCount?.toString() || "any"}
@@ -121,10 +117,9 @@ const CarFilter = () => {
               <Radio value="any">Any</Radio>
             </Flex>
           </RadioGroup>
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={GiCarDoor} color={color} />
+        <FilterContainer icon={GiCarDoor} color={color}>
           <Text fontSize="lg">Doors</Text>
           <RadioGroup
             value={query.carQuery.doorCount?.toString() || "any"}
@@ -138,10 +133,9 @@ const CarFilter = () => {
               <Radio value="any">Any</Radio>
             </Flex>
           </RadioGroup>
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={TbManualGearbox} color={color} />
+        <FilterContainer icon={TbManualGearbox} color={color}>
           <Button
             fontSize="lg"
             variant="link"
@@ -162,10 +156,9 @@ const CarFilter = () => {
               onClick={() => query.setGearboxType(undefined)}
             />
           )}
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={TbAutomaticGearbox} color={color} />
+        <FilterContainer icon={TbAutomaticGearbox} color={color}>
           <Button
             fontSize="lg"
             variant="link"
@@ -184,10 +177,9 @@ const CarFilter = () => {
               onClick={() => query.setGearboxType(undefined)}
             />
           )}
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={GiHorseHead} color={color} />
+        <FilterContainer icon={GiHorseHead} color={color}>
           <Text
             fontSize="lg"
             color={query.carQuery.minHorsePower ? color : "gray.500"}
@@ -228,10 +220,9 @@ const CarFilter = () => {
             </SliderTrack>
             <SliderThumb />
           </Slider>
-        </Flex>
+        </FilterContainer>
 
-        <Flex gap={3} alignItems={"center"}>
-          <Icon as={MdElectricCar} color={color} />
+        <FilterContainer icon={MdElectricCar} color={color}>
           <Button
             fontSize="lg"
             variant="link"
@@ -250,7 +241,7 @@ const CarFilter = () => {
               onClick={() => query.setOnlyElectric(undefined)}
             />
           )}
-        </Flex>
+        </FilterContainer>
       </Flex>
     </>
   );
