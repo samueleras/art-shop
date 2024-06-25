@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import ferrarif8 from "../assets/Ferrari F8.avif";
 import imgage_placeholder from "../assets/no-image-placeholder.webp";
 import useCarQueryStore from "../carquery/store";
 import Car from "../entities/Car";
@@ -27,29 +26,24 @@ const CarCard = ({ car }: Props) => {
     carQuery: { buyOrLease },
   } = useCarQueryStore();
 
-  const carProperties = {
-    doors: 5,
-    passengers: undefined,
-    transmission: "manual",
-    isElectric: true,
-  };
-
   return (
     <Card>
       <CardBody>
         <ChakraLink as={Link} to="/shop/item/1">
-          <Heading size="lg">Ferrari F8</Heading>
+          <Heading size="lg">
+            {car.brand} {car.model}
+          </Heading>
         </ChakraLink>
         <Text mb="1" fontSize="rem">
-          Coupe
+          {car.type}
         </Text>
         <ChakraLink as={Link} to="/shop/item/1">
           <AspectRatio w="100%" ratio={1}>
             <Image
               objectFit="cover"
               width="100%"
-              src={ferrarif8}
-              alt={car.title + "_image"}
+              src={car.thumbnail}
+              alt={car.model + "_image"}
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = imgage_placeholder;
@@ -58,11 +52,13 @@ const CarCard = ({ car }: Props) => {
           </AspectRatio>
         </ChakraLink>
         <Stack mt="3" spacing="1">
-          <CarPropertyIconBar car={carProperties} />
-          <Text>{"A Celebration of Excellence"}</Text>
-          <Text>{"720 HP"}</Text>
+          <CarPropertyIconBar car={car} />
+          <Text>{car.description}</Text>
+          <Text>{car.horsepower} HP</Text>
           <Text fontSize="2xl" mb="3">
-            {buyOrLease === "buy" ? "$266,661" : "$1200 leasing rate"}
+            {buyOrLease === "buy"
+              ? `$${car.price}`
+              : `$${car.leasing} leasing rate`}
           </Text>
         </Stack>
         <Button variant="solid" gap={3}>
