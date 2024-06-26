@@ -47,6 +47,19 @@ const theme = extendTheme(
         900: "#C53030",
       },
     },
+    components: {
+      Heading: {
+        defaultProps: {
+          size: {
+            base: "xl", // Standardgröße für kleine Bildschirme
+            sm: "2xl", // Größe für kleine Bildschirme
+            md: "3xl", // Größe für mittlere Bildschirme
+            lg: "3xl", // Größe für große Bildschirme
+            xl: "3xl", // Größe für extra große Bildschirme
+          },
+        },
+      },
+    },
   },
   withDefaultColorScheme({ colorScheme: "red" })
 );
