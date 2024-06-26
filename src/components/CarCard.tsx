@@ -53,7 +53,7 @@ const CarCard = ({ car }: Props) => {
         </ChakraLink>
         <Stack mt="3" spacing="1">
           <CarPropertyIconBar car={car} />
-          <Text>{car.description}</Text>
+          <Text>{car.shortDescription}</Text>
           <Text>{car.horsepower} HP</Text>
           <Text fontSize="2xl" mb="3">
             {buyOrLease === "buy"

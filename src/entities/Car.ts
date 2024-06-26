@@ -10,7 +10,11 @@ export default interface Car {
   gearbox: "automatic" | "manual";
   horsepower: number;
   electric: boolean;
-  description?: string;
+  shortDescription: string;
+  description: string;
+  fuelConsumption: string;
+  emissions: string;
+  emissionClass: string;
   thumbnail: string;
   images?: string[];
 }
