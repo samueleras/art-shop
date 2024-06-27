@@ -1,7 +1,7 @@
 import { Grid } from "@chakra-ui/react";
 import CarCard from "./CarCard";
 import Car from "../entities/Car";
-import ferrarif8 from "../assets/Ferrari F8.avif";
+import ferrarif8 from "../assets/f8png.avif";
 
 const CarGrid = () => {
   //const { data, error, isFetching } = useCars();

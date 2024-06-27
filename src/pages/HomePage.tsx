@@ -1,5 +1,5 @@
 import { Box, Heading, Text, Image, VStack } from "@chakra-ui/react";
-import ferrarif8 from "../assets/Ferrari F8.avif";
+import ferrarisf90 from "../assets/ferrarisf90.avif";
 
 const HomePage = () => {
   /*   const { data, error, isFetching } = useCar("14598");
@@ -16,11 +16,19 @@ const HomePage = () => {
         </Box>
 
         <Box p={3} borderRadius={5}>
-          <Heading>Todays feature</Heading>
+          <Heading size="lg">Todays feature</Heading>
           <Box marginBlock={3}>
-            <Image width="100%" src={ferrarif8} alt="Ferrari F8" />
+            <Image
+              width="80vw"
+              src={ferrarisf90}
+              alt="Ferrari SF90"
+              aspectRatio="16:9"
+              objectFit="cover"
+              maxH="60vh"
+              objectPosition="0 0"
+            />
           </Box>
-          <Text fontSize="2rem">Ferrari F8</Text>
+          <Text fontSize="2rem">Ferrari SF90 XX Spider</Text>
           <Text fontSize="1.2rem">A Celebration of Excellence</Text>
         </Box>
       </VStack>
