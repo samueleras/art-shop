@@ -1,8 +1,12 @@
+import { Box, Card, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import Car from "../entities/Car";
-import ferrarisf90 from "../assets/ferrarisf90.avif";
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import ferrarisf8 from "../assets/ferrarif8.jpg";
+import ferrarif8png from "../assets/f8png.avif";
+import useCarQueryStore from "../carquery/store";
+import AddToCart from "../components/AddToCart";
+import CarPropertyIconBar from "../components/CarPropertyIconBar";
 import styles from "../css/CarDetailPage.module.css";
+import Car from "../entities/Car";
 
 const CarDetailPage = () => {
   let car: Car = {
@@ -23,10 +27,14 @@ const CarDetailPage = () => {
     emissionClass: "G",
     description:
       "Vor etwa 20 Jahren begann Ferrari mit der Produktion von Sondermodellen, die die Performance der Serienbaureihen in eine noch höhere Dimension befördern. Viele Sondermodelle, wie der 488 Pista und der 812 Competizione, wurden Teil der Legende der Marke aus Maranello. Gleichzeitig startete das Cavallino Rampante das XX-Programm, das einer ausgewählten Gruppe erfahrener Piloten aus dem Kundenkreis die Möglichkeit bietet, sich auf der Rennstrecke als echte Testfahrer am Steuer von Modellen wie dem FXX-K EVO zu bewähren, die nicht für den Straßenverkehr zugelassen sind. Jetzt wurden die Programme zum ersten Mal zusammengeführt: im SF90 XX Spider, dem ersten Ferrari Sondermodell, das auf dem Konzept des XX-Programms basiert und daraus praktisch einen XX mit Straßenzulassung macht. Während der SF90 XX Spider das versenkbare Hardtop des SF90 Spider beibehält, auf dem er basiert, entfesselt er 30 zusätzliche PS und besitzt eine spezifische Softwarelogik und radikal neue Aero-Lösungen, wie einen festen Heckflügel.",
-    thumbnail: ferrarisf90,
+    thumbnail: ferrarisf8,
   };
 
   const params = useParams();
+
+  const {
+    carQuery: { buyOrLease },
+  } = useCarQueryStore();
 
   //const { data, error, isFetching } = useCar(params.id);
 
@@ -34,7 +42,7 @@ const CarDetailPage = () => {
     <>
       <Box className={styles.gradientImage} position="relative">
         <Image
-          src={ferrarisf90}
+          src={car.thumbnail}
           alt={`${car.brand}${car.model}image`}
           className={styles.imageGradientBottom}
         />
@@ -48,6 +56,35 @@ const CarDetailPage = () => {
       <Text textAlign="center" fontSize="lg" p="2rem">
         {car.description}
       </Text>
+      <Card
+        direction={{ base: "column", sm: "row" }}
+        overflow="hidden"
+        variant="outline"
+        margin="auto"
+        width="70%"
+        maxW="40rem"
+      >
+        <Box>
+          <Image
+            objectFit="cover"
+            maxW={{ base: "100%", sm: "150px", md: "250px" }}
+            src={ferrarif8png}
+            alt={`${car.brand}${car.model}image`}
+            height="100%"
+          />
+        </Box>
+        <Stack padding="1rem">
+          <Heading size="md">{`${car.brand} ${car.model}`}</Heading>
+          <CarPropertyIconBar car={car} />
+          <Text>{car.horsepower} HP</Text>
+          <Text fontSize="2xl" mb="3">
+            {buyOrLease === "buy"
+              ? `$${car.price}`
+              : `$${car.leasing} leasing rate`}
+          </Text>
+          <AddToCart />
+        </Stack>
+      </Card>
       <Text fontSize="lg" p="2rem">
         {"Kraftstoffverbrauch (gewichtet kombiniert): " + car.fuelConsumption}
         <br />
