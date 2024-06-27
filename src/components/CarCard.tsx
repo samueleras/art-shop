@@ -1,20 +1,18 @@
 import {
   AspectRatio,
-  Button,
   Card,
   CardBody,
   Link as ChakraLink,
   Heading,
-  Icon,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import imgage_placeholder from "../assets/no-image-placeholder.webp";
 import useCarQueryStore from "../carquery/store";
 import Car from "../entities/Car";
+import AddToCart from "./AddToCart";
 import CarPropertyIconBar from "./CarPropertyIconBar";
 
 interface Props {
@@ -61,10 +59,7 @@ const CarCard = ({ car }: Props) => {
               : `$${car.leasing} leasing rate`}
           </Text>
         </Stack>
-        <Button variant="solid" gap={3}>
-          <Icon as={FaCartShopping} color={"gray.700"} />
-          Add to cart
-        </Button>
+        <AddToCart />
       </CardBody>
     </Card>
   );
