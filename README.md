@@ -8,4 +8,7 @@ This is currently a frontend project. The backend will be added later on.
 This will not be a fully functional online shop but a small project to practice fetching and caching data, aswell as managing (global) state in react.
 
 Very early stage preview, not the the final product:
-![image](https://github.com/samueleras/dreamcars-car-shop/assets/123464312/69c30b6f-c5a8-4488-8017-3f704b698f2c)
+Desktop            |  Smartphone
+:-------------------------:|:-------------------------:
+![image](https://github.com/samueleras/dreamcars-car-shop/assets/123464312/4acfac3d-df1f-4c4f-9cb4-9dd9564a3056) | ![image](https://github.com/samueleras/dreamcars-car-shop/assets/123464312/f61d1333-a955-44ee-88f0-1bdab8f03691)
+
