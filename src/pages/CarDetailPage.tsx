@@ -1,14 +1,4 @@
-import {
-  AspectRatio,
-  Box,
-  Card,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { IoChevronBackCircle, IoChevronForwardCircle } from "react-icons/io5";
+import { Box, Card, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
@@ -18,6 +8,7 @@ import AddToCart from "../components/AddToCart";
 import CarPropertyIconBar from "../components/CarPropertyIconBar";
 import styles from "../css/CarDetailPage.module.css";
 import Car from "../entities/Car";
+import ImageGallery from "../components/ImageGallery";
 
 const CarDetailPage = () => {
   let car: Car = {
@@ -47,8 +38,6 @@ const CarDetailPage = () => {
   const {
     carQuery: { buyOrLease },
   } = useCarQueryStore();
-
-  const [currentImg, setCurrentImg] = useState(0);
 
   //const { data, error, isFetching } = useCar(params.id);
 
@@ -106,52 +95,7 @@ const CarDetailPage = () => {
         <br />
         {"CO2-Klasse (gewichtet kombiniert): " + car.emissionClass}
       </Text>
-      <AspectRatio
-        ratio={16 / 9}
-        margin="auto"
-        width={{ base: "100%", sm: "80%" }}
-        position="relative"
-        marginBottom="6rem"
-        display={car.images || "none"}
-      >
-        <Box>
-          <Image
-            objectFit="cover"
-            width="100%"
-            src={car.images ? car.images[currentImg] : car.thumbnail}
-            alt={`${car.brand}${car.model}image`}
-          />
-          <Box
-            position="absolute"
-            left="1rem"
-            top="50%"
-            transform="translateY(-50%)"
-            display={currentImg == 0 ? "none" : "block"}
-            onClick={() => {
-              if (car.images && currentImg > 0) setCurrentImg(currentImg - 1);
-            }}
-          >
-            <IoChevronBackCircle size="3rem" />
-          </Box>
-          <Box
-            position="absolute"
-            right="1rem"
-            top="50%"
-            transform="translateY(-50%)"
-            display={
-              car.images && currentImg == car.images?.length - 1
-                ? "none"
-                : "block"
-            }
-            onClick={() => {
-              if (car.images && currentImg < car.images?.length - 1)
-                setCurrentImg(currentImg + 1);
-            }}
-          >
-            <IoChevronForwardCircle size="3rem" />
-          </Box>
-        </Box>
-      </AspectRatio>
+      <ImageGallery car={car} />
     </>
   );
 };
