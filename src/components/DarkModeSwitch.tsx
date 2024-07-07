@@ -1,20 +1,17 @@
-import { FormControl, FormLabel, Switch, useColorMode } from "@chakra-ui/react";
+import { Button, useColorMode } from "@chakra-ui/react";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <FormControl display="flex" alignItems="center" h="100%" gap="1rem" w="">
-      <Switch
-        id="darkmode"
-        onChange={toggleColorMode}
-        isChecked={colorMode === "dark" ? true : false}
-      />
-
-      <FormLabel htmlFor="darkmode" mb="0" whiteSpace={"nowrap"}>
-        Dark Mode
-      </FormLabel>
-    </FormControl>
+    <Button background="none" onClick={toggleColorMode}>
+      {colorMode == "light" ? (
+        <MdDarkMode size="1.5rem" />
+      ) : (
+        <MdLightMode size="1.5rem" />
+      )}
+    </Button>
   );
 };
 
