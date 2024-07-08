@@ -60,7 +60,7 @@ const CarFilter = () => {
                       | "suv")
               );
             }}
-            defaultValue={query.carQuery.vehicleType}
+            value={query.carQuery.vehicleType || "any"}
           >
             <option value="any">Any</option>
             <option value="coupe">Coupe</option>
@@ -78,7 +78,7 @@ const CarFilter = () => {
             aria-label={["min", "max"]}
             min={0}
             max={500000}
-            defaultValue={[
+            value={[
               query.carQuery.minPrice || 0,
               query.carQuery.maxPrice || 500000,
             ]}
@@ -243,6 +243,22 @@ const CarFilter = () => {
           )}
         </FilterContainer>
       </Flex>
+      <Button
+        colorScheme="red"
+        mt={5}
+        onClick={() => {
+          query.setVehicleType(undefined);
+          query.setMinPrice(0);
+          query.setMaxPrice(undefined);
+          query.setPassengerCount(undefined);
+          query.setDoorCount(undefined);
+          query.setGearboxType(undefined);
+          query.setMinHorsePower(0);
+          query.setOnlyElectric(undefined);
+        }}
+      >
+        Reset
+      </Button>
     </>
   );
 };
