@@ -15,8 +15,8 @@ import SearchButton from "./SearchButton";
 import ShoppingCart from "./ShoppingCart";
 
 const NavigationBar = () => {
-  const bgcolor = useColorModeValue("gray.700", "white");
-  const color = useColorModeValue("white", "gray.700");
+  const bgcolor = useColorModeValue("gray.700", "gray.100");
+  const color = useColorModeValue("gray.100", "black");
   const logobg = useColorModeValue("black", "white");
   let activeLink = "red.600";
   const { isOpen, onToggle } = useDisclosure();

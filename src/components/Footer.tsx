@@ -1,8 +1,8 @@
 import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 
 const Footer = () => {
-  const bgcolor = useColorModeValue("gray.700", "white");
-  const color = useColorModeValue("white", "gray.700");
+  const bgcolor = useColorModeValue("gray.700", "gray.100");
+  const color = useColorModeValue("gray.100", "black");
 
   return (
     <Flex
