@@ -6,9 +6,9 @@ import ferrarisf90 from "../assets/ferrarisf90.avif";
 import useCarQueryStore from "../carquery/store";
 import AddToCart from "../components/AddToCart";
 import CarPropertyIconBar from "../components/CarPropertyIconBar";
+import ImageGallery from "../components/ImageGallery";
 import styles from "../css/CarDetailPage.module.css";
 import Car from "../entities/Car";
-import ImageGallery from "../components/ImageGallery";
 
 const CarDetailPage = () => {
   let car: Car = {
@@ -30,6 +30,7 @@ const CarDetailPage = () => {
     description:
       "Vor etwa 20 Jahren begann Ferrari mit der Produktion von Sondermodellen, die die Performance der Serienbaureihen in eine noch höhere Dimension befördern. Viele Sondermodelle, wie der 488 Pista und der 812 Competizione, wurden Teil der Legende der Marke aus Maranello. Gleichzeitig startete das Cavallino Rampante das XX-Programm, das einer ausgewählten Gruppe erfahrener Piloten aus dem Kundenkreis die Möglichkeit bietet, sich auf der Rennstrecke als echte Testfahrer am Steuer von Modellen wie dem FXX-K EVO zu bewähren, die nicht für den Straßenverkehr zugelassen sind. Jetzt wurden die Programme zum ersten Mal zusammengeführt: im SF90 XX Spider, dem ersten Ferrari Sondermodell, das auf dem Konzept des XX-Programms basiert und daraus praktisch einen XX mit Straßenzulassung macht. Während der SF90 XX Spider das versenkbare Hardtop des SF90 Spider beibehält, auf dem er basiert, entfesselt er 30 zusätzliche PS und besitzt eine spezifische Softwarelogik und radikal neue Aero-Lösungen, wie einen festen Heckflügel.",
     thumbnail: ferrarisf8,
+    png: ferrarif8png,
     images: [ferrarisf8, ferrarif8png, ferrarisf90],
   };
 
@@ -71,7 +72,7 @@ const CarDetailPage = () => {
           <Image
             objectFit="contain"
             maxW={{ base: "100%", sm: "150px", md: "250px" }}
-            src={ferrarif8png}
+            src={car.png}
             alt={`${car.brand}${car.model}image`}
             height="100%"
           />

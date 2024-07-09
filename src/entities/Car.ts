@@ -16,5 +16,6 @@ export default interface Car {
   emissions: string;
   emissionClass: string;
   thumbnail: string;
+  png: string;
   images?: string[];
 }

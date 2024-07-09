@@ -40,7 +40,7 @@ const CarCard = ({ car }: Props) => {
             <Image
               objectFit="cover"
               width="100%"
-              src={car.thumbnail}
+              src={car.png}
               alt={car.model + "_image"}
               onError={(e) => {
                 e.currentTarget.onerror = null;
