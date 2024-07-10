@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export interface CarQuery {
-  buyOrLease?: "buy" | "lease";
+  buyOrLease: "buy" | "lease";
   vehicleType?: "suv" | "coupe" | "convertible";
   gearboxType?: "automatic" | "manual";
   minHorsePower?: number;
