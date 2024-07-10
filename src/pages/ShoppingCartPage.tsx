@@ -14,8 +14,11 @@ import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
 import ShoppingCartItem from "../components/ShoppingCartItem";
 import Car from "../entities/Car";
+import useShoppingCartStore from "../stores/shoppingCartStore";
 
 const ShoppingCartPage = () => {
+  const { items, getOverallItemCount } = useShoppingCartStore();
+
   let car: Car = {
     id: 1,
     brand: "Ferrari",
@@ -38,11 +41,12 @@ const ShoppingCartPage = () => {
     png: ferrarif8png,
     images: [ferrarisf8, ferrarif8png, ferrarisf90],
   };
+
   return (
     <Box padding="2rem" margin="auto" width={{ base: "100%", xl: "80%" }}>
       <Heading size="xl">Shopping Cart</Heading>
       <Text>
-        <b>2 items</b> in your cart.
+        <b>{getOverallItemCount()} items</b> in your cart.
       </Text>
       <Grid
         gap={3}
@@ -67,8 +71,17 @@ const ShoppingCartPage = () => {
           </CardHeader>
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4">
-              <ShoppingCartItem car={car} />
-              <ShoppingCartItem car={car} />
+              {items.length > 0 ? (
+                items.map((item) => (
+                  <ShoppingCartItem
+                    car={car}
+                    buyOrLease={item.buyOrLease}
+                    key={item.carId + item.buyOrLease}
+                  />
+                ))
+              ) : (
+                <Text>There are no products in your cart.</Text>
+              )}
             </Stack>
           </CardBody>
         </Card>
