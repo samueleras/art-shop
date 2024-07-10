@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import imgage_placeholder from "../assets/no-image-placeholder.webp";
-import useCarQueryStore from "../stores/carqueryStore";
 import Car from "../entities/Car";
+import useCarQueryStore from "../stores/carqueryStore";
 import AddToCart from "./AddToCart";
 import CarPropertyIconBar from "./CarPropertyIconBar";
 
@@ -59,7 +59,7 @@ const CarCard = ({ car }: Props) => {
               : `$${car.leasing} leasing rate`}
           </Text>
         </Stack>
-        <AddToCart />
+        <AddToCart car={car} />
       </CardBody>
     </Card>
   );

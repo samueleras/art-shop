@@ -86,7 +86,7 @@ const CarDetailPage = () => {
               ? `$${car.price}`
               : `$${car.leasing} leasing rate`}
           </Text>
-          <AddToCart />
+          <AddToCart car={car} />
         </Stack>
       </Card>
       <Text fontSize="lg" p="2rem">
