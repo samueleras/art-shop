@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
-import useCarQueryStore from "../carquery/store";
+import useCarQueryStore from "../stores/carqueryStore";
 import AddToCart from "../components/AddToCart";
 import CarPropertyIconBar from "../components/CarPropertyIconBar";
 import ImageGallery from "../components/ImageGallery";

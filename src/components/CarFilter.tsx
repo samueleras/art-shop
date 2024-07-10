@@ -24,7 +24,7 @@ import { GiCarDoor, GiHorseHead } from "react-icons/gi";
 import { IoMdPerson } from "react-icons/io";
 import { MdElectricCar } from "react-icons/md";
 import { TbAutomaticGearbox, TbManualGearbox } from "react-icons/tb";
-import useCarQueryStore from "../carquery/store";
+import useCarQueryStore from "../stores/carqueryStore";
 import FilterContainer from "./FilterContainer";
 
 const CarFilter = () => {

@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import imgage_placeholder from "../assets/no-image-placeholder.webp";
-import useCarQueryStore from "../carquery/store";
+import useCarQueryStore from "../stores/carqueryStore";
 import Car from "../entities/Car";
 import AddToCart from "./AddToCart";
 import CarPropertyIconBar from "./CarPropertyIconBar";

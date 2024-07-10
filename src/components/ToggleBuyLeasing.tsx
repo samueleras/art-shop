@@ -6,7 +6,7 @@ import {
   SliderThumb,
   SliderTrack,
 } from "@chakra-ui/react";
-import useCarQueryStore from "../carquery/store";
+import useCarQueryStore from "../stores/carqueryStore";
 
 const ToggleBuyLeasing = () => {
   const {
