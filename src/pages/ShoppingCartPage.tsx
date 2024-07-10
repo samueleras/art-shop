@@ -54,12 +54,8 @@ const ShoppingCartPage = () => {
         alignItems="start"
       >
         <Card marginTop="2rem">
-          <CardHeader>
-            <Grid
-              gap={3}
-              gridTemplateColumns="50% 25% 25%"
-              display={{ base: "none", md: "grid" }}
-            >
+          <CardHeader display={{ base: "none", md: "block" }}>
+            <Grid gap={3} gridTemplateColumns="50% 25% 25%">
               <Heading size="md">Product</Heading>
               <Heading size="md" justifySelf="center">
                 Quantity
