@@ -7,17 +7,19 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import Car from "../entities/Car";
+import useShoppingCartStore from "../stores/shoppingCartStore";
 import CarPropertyIconBar from "./CarPropertyIconBar";
 
 interface Props {
   car: Car;
+  buyOrLease: "buy" | "lease";
 }
 
-const ShoppingCartItem = ({ car }: Props) => {
-  const [quantity, setQuantity] = useState(1);
+const ShoppingCartItem = ({ car, buyOrLease }: Props) => {
+  const { getItemCount, decrementCount, incrementCount } =
+    useShoppingCartStore();
 
   return (
     <Grid
@@ -49,19 +51,21 @@ const ShoppingCartItem = ({ car }: Props) => {
           <CiSquareMinus
             size="1.5rem"
             cursor="pointer"
-            onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+            onClick={() => decrementCount(car.id, buyOrLease)}
           />
         </button>
-        <Text size="md">{quantity}</Text>
+        <Text size="md">{getItemCount(car.id, buyOrLease)}</Text>
         <button>
           <CiSquarePlus
             size="1.5rem"
-            onClick={() => setQuantity(quantity + 1)}
+            onClick={() => incrementCount(car.id, buyOrLease)}
             cursor="pointer"
           />
         </button>
       </HStack>
-      <Heading size="md">${car.price}</Heading>
+      <Heading size="md">
+        ${buyOrLease === "buy" ? car.price : car.leasing + " / month"}
+      </Heading>
     </Grid>
   );
 };
