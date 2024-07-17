@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { create } from "zustand";
 
 export interface ShoppingCartItem {
@@ -12,7 +11,6 @@ interface ShoppingCartStore {
   addItem: (carId: number, buyOrLease: "buy" | "lease") => void;
   incrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
   decrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
-  getItemCount: (id: number, buyOrLease: "buy" | "lease") => number;
   getOverallItemCount: () => number;
 }
 
@@ -77,14 +75,6 @@ const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
       setLocalStorage(updatedItems);
       return { items: updatedItems };
     }),
-  getItemCount: (carId, buyOrLease) => {
-    const store = get();
-    for (let item of store.items) {
-      if (item.carId === carId && item.buyOrLease === buyOrLease)
-        return item.count;
-    }
-    return 0;
-  },
   getOverallItemCount: () => {
     const store = get();
     let itemCount = 0;
