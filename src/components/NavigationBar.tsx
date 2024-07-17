@@ -12,7 +12,8 @@ import logo from "../assets/logo.png";
 import DarkModeSwitch from "./DarkModeSwitch";
 import SearchBar from "./SearchBar";
 import SearchButton from "./SearchButton";
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "./ShoppingCartButton";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 const NavigationBar = () => {
   const bgcolor = useColorModeValue("gray.700", "gray.100");
@@ -105,7 +106,7 @@ const NavigationBar = () => {
             }}
           />
           <DarkModeSwitch />
-          <ShoppingCart />
+          <ShoppingCartButton />
         </Flex>
       </Flex>
       <SearchBar isOpen={isOpen} onClick={onToggle} />
