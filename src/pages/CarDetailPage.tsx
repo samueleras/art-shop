@@ -6,11 +6,10 @@ import ferrarisf90 from "../assets/ferrarisf90.avif";
 import AddToCart from "../components/AddToCart";
 import CarPropertyIconBar from "../components/CarPropertyIconBar";
 import ImageGallery from "../components/ImageGallery";
-import PriceTag from "../components/PriceTag";
+import ShopPriceTag from "../components/ShopPriceTag";
 import ToggleBuyLeasing from "../components/ToggleBuyLeasing";
 import styles from "../css/CarDetailPage.module.css";
 import Car from "../entities/Car";
-import useCarQueryStore from "../stores/carqueryStore";
 
 const CarDetailPage = () => {
   let car: Car = {
@@ -35,10 +34,6 @@ const CarDetailPage = () => {
     png: ferrarif8png,
     images: [ferrarisf8, ferrarif8png, ferrarisf90],
   };
-
-  const {
-    carQuery: { buyOrLease },
-  } = useCarQueryStore();
 
   const params = useParams();
 
@@ -86,7 +81,7 @@ const CarDetailPage = () => {
           <Heading size="md">{`${car.brand} ${car.model}`}</Heading>
           <CarPropertyIconBar car={car} />
           <Text>{car.horsepower} HP</Text>
-          <PriceTag shoppingCart={false} car={car} buyOrLease={buyOrLease} />
+          <ShopPriceTag car={car} />
           <AddToCart car={car} />
         </Stack>
       </Card>

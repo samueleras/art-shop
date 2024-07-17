@@ -11,20 +11,15 @@ import {
 import { Link } from "react-router-dom";
 import imgage_placeholder from "../assets/no-image-placeholder.webp";
 import Car from "../entities/Car";
-import useCarQueryStore from "../stores/carqueryStore";
 import AddToCart from "./AddToCart";
 import CarPropertyIconBar from "./CarPropertyIconBar";
-import PriceTag from "./PriceTag";
+import ShopPriceTag from "./ShopPriceTag";
 
 interface Props {
   car: Car;
 }
 
 const CarCard = ({ car }: Props) => {
-  const {
-    carQuery: { buyOrLease },
-  } = useCarQueryStore();
-
   return (
     <Card>
       <CardBody>
@@ -54,7 +49,7 @@ const CarCard = ({ car }: Props) => {
           <CarPropertyIconBar car={car} />
           <Text>{car.shortDescription}</Text>
           <Text>{car.horsepower} HP</Text>
-          <PriceTag shoppingCart={false} car={car} buyOrLease={buyOrLease} />
+          <ShopPriceTag car={car} />
         </Stack>
         <AddToCart car={car} />
       </CardBody>
