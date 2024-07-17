@@ -1,8 +1,8 @@
-import { Button, Link as ChakraLink, Flex } from "@chakra-ui/react";
+import { Button, Link as ChakraLink } from "@chakra-ui/react";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import NumberBadge from "./NumberBadge";
 import useShoppingCartStore from "../stores/shoppingCartStore";
+import NumberBadge from "./NumberBadge";
 
 const ShoppingCartButton = () => {
   const { getOverallItemCount } = useShoppingCartStore();

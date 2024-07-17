@@ -12,7 +12,6 @@ import logo from "../assets/logo.png";
 import DarkModeSwitch from "./DarkModeSwitch";
 import SearchBar from "./SearchBar";
 import SearchButton from "./SearchButton";
-import ShoppingCart from "./ShoppingCartButton";
 import ShoppingCartButton from "./ShoppingCartButton";
 
 const NavigationBar = () => {
