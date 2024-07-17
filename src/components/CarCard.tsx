@@ -14,6 +14,7 @@ import Car from "../entities/Car";
 import useCarQueryStore from "../stores/carqueryStore";
 import AddToCart from "./AddToCart";
 import CarPropertyIconBar from "./CarPropertyIconBar";
+import PriceTag from "./PriceTag";
 
 interface Props {
   car: Car;
@@ -53,11 +54,7 @@ const CarCard = ({ car }: Props) => {
           <CarPropertyIconBar car={car} />
           <Text>{car.shortDescription}</Text>
           <Text>{car.horsepower} HP</Text>
-          <Text fontSize="2xl" mb="3">
-            {buyOrLease === "buy"
-              ? `$${car.price}`
-              : `$${car.leasing} leasing rate`}
-          </Text>
+          <PriceTag shoppingCart={false} car={car} buyOrLease={buyOrLease} />
         </Stack>
         <AddToCart car={car} />
       </CardBody>

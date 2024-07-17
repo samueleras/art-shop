@@ -11,6 +11,7 @@ import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import Car from "../entities/Car";
 import useShoppingCartStore from "../stores/shoppingCartStore";
 import CarPropertyIconBar from "./CarPropertyIconBar";
+import PriceTag from "./PriceTag";
 
 interface Props {
   car: Car;
@@ -63,9 +64,7 @@ const ShoppingCartItem = ({ car, buyOrLease }: Props) => {
           />
         </button>
       </HStack>
-      <Heading size="md">
-        ${buyOrLease === "buy" ? car.price : car.leasing + " / month"}
-      </Heading>
+      <PriceTag shoppingCart={true} car={car} buyOrLease={buyOrLease} />
     </Grid>
   );
 };

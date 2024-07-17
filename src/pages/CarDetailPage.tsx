@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
-import useCarQueryStore from "../stores/carqueryStore";
 import AddToCart from "../components/AddToCart";
 import CarPropertyIconBar from "../components/CarPropertyIconBar";
 import ImageGallery from "../components/ImageGallery";
+import PriceTag from "../components/PriceTag";
+import ToggleBuyLeasing from "../components/ToggleBuyLeasing";
 import styles from "../css/CarDetailPage.module.css";
 import Car from "../entities/Car";
+import useCarQueryStore from "../stores/carqueryStore";
 
 const CarDetailPage = () => {
   let car: Car = {
@@ -34,11 +36,11 @@ const CarDetailPage = () => {
     images: [ferrarisf8, ferrarif8png, ferrarisf90],
   };
 
-  const params = useParams();
-
   const {
     carQuery: { buyOrLease },
   } = useCarQueryStore();
+
+  const params = useParams();
 
   //const { data, error, isFetching } = useCar(params.id);
 
@@ -60,6 +62,9 @@ const CarDetailPage = () => {
       <Text textAlign="center" fontSize="lg" p="2rem">
         {car.description}
       </Text>
+      <Box width="fit-content" margin="auto" marginBottom="1rem">
+        <ToggleBuyLeasing />
+      </Box>
       <Card
         direction={{ base: "column", sm: "row" }}
         overflow="hidden"
@@ -81,11 +86,7 @@ const CarDetailPage = () => {
           <Heading size="md">{`${car.brand} ${car.model}`}</Heading>
           <CarPropertyIconBar car={car} />
           <Text>{car.horsepower} HP</Text>
-          <Text fontSize="2xl" mb="3">
-            {buyOrLease === "buy"
-              ? `$${car.price}`
-              : `$${car.leasing} leasing rate`}
-          </Text>
+          <PriceTag shoppingCart={false} car={car} buyOrLease={buyOrLease} />
           <AddToCart car={car} />
         </Stack>
       </Card>
