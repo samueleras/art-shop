@@ -1,20 +1,18 @@
 import { Box, Text } from "@chakra-ui/react";
 import Car from "../entities/Car";
+import useCarQueryStore from "../stores/carqueryStore";
 
 interface Props {
-  shoppingCart: boolean;
   car: Car;
-  buyOrLease: "buy" | "lease";
 }
 
-const PriceTag = ({ shoppingCart, car, buyOrLease }: Props) => {
+const ShopPriceTag = ({ car }: Props) => {
+  const {
+    carQuery: { buyOrLease },
+  } = useCarQueryStore();
+
   return (
-    <Text
-      fontSize={shoppingCart ? "xl" : "2xl"}
-      mb="3"
-      fontWeight={shoppingCart ? "bold" : "normal"}
-      textAlign={shoppingCart ? "center" : "left"}
-    >
+    <Text fontSize="2xl" mb="3">
       $
       {buyOrLease === "buy" ? (
         `${car.price}`
@@ -31,4 +29,4 @@ const PriceTag = ({ shoppingCart, car, buyOrLease }: Props) => {
   );
 };
 
-export default PriceTag;
+export default ShopPriceTag;
