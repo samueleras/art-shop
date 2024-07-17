@@ -12,7 +12,7 @@ import {
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
-import ShoppingCartItem from "../components/ShoppingCartItem";
+import ShoppingCartItemBox from "../components/ShoppingCartItemBox";
 import Car from "../entities/Car";
 import useShoppingCartStore from "../stores/shoppingCartStore";
 
@@ -69,9 +69,9 @@ const ShoppingCartPage = () => {
             <Stack divider={<StackDivider />} spacing="4">
               {items.length > 0 ? (
                 items.map((item) => (
-                  <ShoppingCartItem
+                  <ShoppingCartItemBox
                     car={car}
-                    buyOrLease={item.buyOrLease}
+                    item={item}
                     key={item.carId + item.buyOrLease}
                   />
                 ))
