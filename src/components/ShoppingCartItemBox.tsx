@@ -9,18 +9,23 @@ import {
 } from "@chakra-ui/react";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
 import Car from "../entities/Car";
-import useShoppingCartStore from "../stores/shoppingCartStore";
+import useShoppingCartStore, {
+  ShoppingCartItem,
+} from "../stores/shoppingCartStore";
 import CarPropertyIconBar from "./CarPropertyIconBar";
-import PriceTag from "./PriceTag";
+import CartPriceTag from "./CartPriceTag";
 
 interface Props {
   car: Car;
-  buyOrLease: "buy" | "lease";
+  item: ShoppingCartItem;
 }
 
-const ShoppingCartItem = ({ car, buyOrLease }: Props) => {
-  const { getItemCount, decrementCount, incrementCount } =
-    useShoppingCartStore();
+const ShoppingCartItemBox = ({
+  car,
+  item: { buyOrLease, count },
+  item,
+}: Props) => {
+  const { decrementCount, incrementCount } = useShoppingCartStore();
 
   return (
     <Grid
@@ -55,7 +60,7 @@ const ShoppingCartItem = ({ car, buyOrLease }: Props) => {
             onClick={() => decrementCount(car.id, buyOrLease)}
           />
         </button>
-        <Text size="md">{getItemCount(car.id, buyOrLease)}</Text>
+        <Text size="md">{count}</Text>
         <button>
           <CiSquarePlus
             size="1.5rem"
@@ -64,9 +69,9 @@ const ShoppingCartItem = ({ car, buyOrLease }: Props) => {
           />
         </button>
       </HStack>
-      <PriceTag shoppingCart={true} car={car} buyOrLease={buyOrLease} />
+      <CartPriceTag car={car} item={item} />
     </Grid>
   );
 };
 
-export default ShoppingCartItem;
+export default ShoppingCartItemBox;
