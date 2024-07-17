@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { create } from "zustand";
 
 export interface ShoppingCartItem {
@@ -15,8 +16,17 @@ interface ShoppingCartStore {
   getOverallItemCount: () => number;
 }
 
+const getInitialShoppingCartItems = () => {
+  const shoppingCartItems = localStorage.getItem("DreamCarsShoppingCartItems");
+  return shoppingCartItems ? JSON.parse(shoppingCartItems) : [];
+};
+
+const setLocalStorage = (items: ShoppingCartItem[]) => {
+  localStorage.setItem("DreamCarsShoppingCartItems", JSON.stringify(items));
+};
+
 const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
-  items: [],
+  items: getInitialShoppingCartItems(),
   addItem: (carId, buyOrLease) =>
     set((store) => {
       let existing = false;
@@ -35,6 +45,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
           buyOrLease,
         } as ShoppingCartItem);
       }
+      setLocalStorage(updatedItems);
       return { items: updatedItems };
     }),
   incrementCount: (carId, buyOrLease) =>
@@ -46,6 +57,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
           return item;
         }
       });
+      setLocalStorage(updatedItems);
       return { items: updatedItems };
     }),
   decrementCount: (carId, buyOrLease) =>
@@ -62,6 +74,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
           return item;
         }
       });
+      setLocalStorage(updatedItems);
       return { items: updatedItems };
     }),
   getItemCount: (carId, buyOrLease) => {
