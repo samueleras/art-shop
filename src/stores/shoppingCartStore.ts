@@ -1,14 +1,16 @@
 import { create } from "zustand";
+import Car from "../entities/Car";
 
 export interface ShoppingCartItem {
   carId: number;
   count: number;
   buyOrLease: "buy" | "lease";
+  car: Car;
 }
 
 interface ShoppingCartStore {
   items: ShoppingCartItem[];
-  addItem: (carId: number, buyOrLease: "buy" | "lease") => void;
+  addItem: (carId: number, buyOrLease: "buy" | "lease", car: Car) => void;
   incrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
   decrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
   getOverallItemCount: () => number;
@@ -25,7 +27,7 @@ const setLocalStorage = (items: ShoppingCartItem[]) => {
 
 const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
   items: getInitialShoppingCartItems(),
-  addItem: (carId, buyOrLease) =>
+  addItem: (carId, buyOrLease, car) =>
     set((store) => {
       let existing = false;
       const updatedItems = store.items.map((item) => {
@@ -41,6 +43,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set, get) => ({
           carId,
           count: 1,
           buyOrLease,
+          car,
         } as ShoppingCartItem);
       }
       setLocalStorage(updatedItems);
