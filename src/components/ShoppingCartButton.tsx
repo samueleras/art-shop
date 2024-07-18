@@ -5,15 +5,13 @@ import useShoppingCartStore from "../stores/shoppingCartStore";
 import NumberBadge from "./NumberBadge";
 
 const ShoppingCartButton = () => {
-  const { getOverallItemCount } = useShoppingCartStore();
+  const { overallItemCount } = useShoppingCartStore();
 
   return (
     <ChakraLink as={Link} to="/shoppingcart">
       <Button background="none" position="relative">
         <FaCartShopping size="1.3rem" />
-        {getOverallItemCount() > 0 && (
-          <NumberBadge count={getOverallItemCount()} />
-        )}
+        {overallItemCount > 0 && <NumberBadge count={overallItemCount} />}
       </Button>
     </ChakraLink>
   );

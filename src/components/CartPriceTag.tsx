@@ -1,6 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import Car from "../entities/Car";
 import { ShoppingCartItem } from "../stores/shoppingCartStore";
+import PriceTagFormatter from "../services/numberFormatter";
 
 interface Props {
   car: Car;
@@ -9,16 +10,22 @@ interface Props {
 
 const CartPriceTag = ({ car, item: { buyOrLease, count } }: Props) => {
   return (
-    <Text fontSize="xl" mb="3" fontWeight="bold" textAlign="center">
+    <Text
+      fontSize="xl"
+      mb="3"
+      fontWeight="bold"
+      textAlign="center"
+      padding=".5rem"
+    >
       $
       {buyOrLease === "buy" ? (
-        `${car.price * count}`
+        `${PriceTagFormatter(car.price * count)}`
       ) : (
         <>
-          {car.leasing * count}
-          {" / month - "}
+          {PriceTagFormatter(car.leasing * count)}
+          {" / month "}
           <Box as="span" whiteSpace="nowrap">
-            2 years
+            - 2 years
           </Box>
         </>
       )}

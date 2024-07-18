@@ -21,11 +21,11 @@ import ferrarisf90 from "../assets/ferrarisf90.avif";
 import ShoppingCartItemBox from "../components/ShoppingCartItemBox";
 import Car from "../entities/Car";
 import useShoppingCartStore from "../stores/shoppingCartStore";
+import PriceTagFormatter from "../services/numberFormatter";
 
 const ShoppingCartPage = () => {
-  const { items, getOverallItemCount } = useShoppingCartStore();
+  const { items, overallCosts, overallItemCount } = useShoppingCartStore();
   const [shippingCost, setShippingCost] = useState(209.99);
-  const [carCost, setCarCost] = useState({ oneTime: 0, monthly: 0 });
   const { isOpen, onToggle } = useDisclosure();
 
   const couponCodeRef = useRef<HTMLInputElement>(null);
@@ -46,13 +46,6 @@ const ShoppingCartPage = () => {
     isOpen || onToggle();
   };
 
-  const roundedNumberWithCommas = (x: number) => {
-    {
-      x = Math.round(x * 100) / 100;
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-  };
-
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
@@ -61,19 +54,6 @@ const ShoppingCartPage = () => {
       return () => clearTimeout(timer);
     }
   }, [isOpen, onToggle]);
-
-  useEffect(() => {
-    let oneTime = 0;
-    let monthly = 0;
-    for (let x of items) {
-      if (x.buyOrLease === "buy") {
-        oneTime += x.car.price * x.count;
-      } else if (x.buyOrLease === "lease") {
-        monthly += x.car.leasing * x.count * 24;
-      }
-    }
-    setCarCost({ oneTime, monthly });
-  }, [items]);
 
   let car: Car = {
     id: 1,
@@ -102,7 +82,7 @@ const ShoppingCartPage = () => {
     <Box padding="2rem" margin="auto" width={{ base: "100%", xl: "80%" }}>
       <Heading size="xl">Shopping Cart</Heading>
       <Text>
-        <b>{getOverallItemCount()} items</b> in your cart.
+        <b>{overallItemCount} items</b> in your cart.
       </Text>
       <Grid
         gap={3}
@@ -168,20 +148,19 @@ const ShoppingCartPage = () => {
                 <Heading size="md">Cart Total</Heading>
                 <Grid gridTemplateColumns="1fr 1fr">
                   <Text>One-Time Cost:</Text>
-                  <Text>${roundedNumberWithCommas(carCost.oneTime)}</Text>
+                  <Text>${PriceTagFormatter(overallCosts.oneTimeCost)}</Text>
                   <Text>Monthly Cost:</Text>
-                  <Text>${roundedNumberWithCommas(carCost.monthly)}</Text>
+                  <Text>${PriceTagFormatter(overallCosts.monthlyCosts)}</Text>
                   <Text>Shipping:</Text>
                   <Text>
-                    $
-                    {roundedNumberWithCommas(
-                      shippingCost * getOverallItemCount()
-                    )}
+                    ${PriceTagFormatter(shippingCost * overallItemCount)}
                   </Text>
                   <Text>Total (2 Years):</Text>
                   <Text>
                     $
-                    {roundedNumberWithCommas(carCost.oneTime + carCost.monthly)}
+                    {PriceTagFormatter(
+                      overallCosts.oneTimeCost + overallCosts.monthlyCosts
+                    )}
                   </Text>
                 </Grid>
               </Stack>
