@@ -30,7 +30,7 @@ const ShoppingCartItemBox = ({
   return (
     <Grid
       gap={3}
-      gridTemplateColumns={{ base: "1fr", md: "50% 25% 25%" }}
+      gridTemplateColumns={{ base: "1fr", md: "50% 20% 30%" }}
       alignItems="center"
       justifyItems="center"
     >

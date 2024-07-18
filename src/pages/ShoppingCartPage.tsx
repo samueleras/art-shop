@@ -20,8 +20,8 @@ import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
 import ShoppingCartItemBox from "../components/ShoppingCartItemBox";
 import Car from "../entities/Car";
+import priceTagFormatter from "../services/priceTagFormatter";
 import useShoppingCartStore from "../stores/shoppingCartStore";
-import PriceTagFormatter from "../services/numberFormatter";
 
 const ShoppingCartPage = () => {
   const { items, overallCosts, overallItemCount } = useShoppingCartStore();
@@ -91,7 +91,7 @@ const ShoppingCartPage = () => {
       >
         <Card marginTop="2rem">
           <CardHeader display={{ base: "none", md: "block" }}>
-            <Grid gap={3} gridTemplateColumns="50% 25% 25%">
+            <Grid gap={3} gridTemplateColumns="50% 20% 30%">
               <Heading size="md">Product</Heading>
               <Heading size="md" justifySelf="center">
                 Quantity
@@ -148,17 +148,19 @@ const ShoppingCartPage = () => {
                 <Heading size="md">Cart Total</Heading>
                 <Grid gridTemplateColumns="1fr 1fr">
                   <Text>One-Time Cost:</Text>
-                  <Text>${PriceTagFormatter(overallCosts.oneTimeCost)}</Text>
+                  <Text>${priceTagFormatter(overallCosts.oneTimeCost)}</Text>
                   <Text>Monthly Cost:</Text>
-                  <Text>${PriceTagFormatter(overallCosts.monthlyCosts)}</Text>
+                  <Text>${priceTagFormatter(overallCosts.monthlyCosts)}</Text>
                   <Text>Shipping:</Text>
                   <Text>
-                    ${PriceTagFormatter(shippingCost * overallItemCount)}
+                    ${priceTagFormatter(shippingCost * overallItemCount)}
                   </Text>
-                  <Text>Total (2 Years):</Text>
+                  <Text>
+                    Total{overallCosts.monthlyCosts != 0 && " (2 Years)"}:
+                  </Text>
                   <Text>
                     $
-                    {PriceTagFormatter(
+                    {priceTagFormatter(
                       overallCosts.oneTimeCost + overallCosts.monthlyCosts
                     )}
                   </Text>
