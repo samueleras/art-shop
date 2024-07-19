@@ -20,6 +20,7 @@ interface ShoppingCartStore {
   addItem: (carId: number, buyOrLease: "buy" | "lease", car: Car) => void;
   incrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
   decrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
+  updateItems: (car: Car) => void;
   initializeItems: () => void;
 }
 
@@ -102,6 +103,18 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
       });
       updatedItems = updatedItems.filter((item) => {
         if (item.count != 0) {
+          return item;
+        }
+      });
+      setLocalStorage(updatedItems);
+      return calculateNewState(updatedItems);
+    }),
+  updateItems: (car) =>
+    set((store) => {
+      const updatedItems = store.items.map((item) => {
+        if (item.carId === car.id) {
+          return { ...item, car: car };
+        } else {
           return item;
         }
       });
