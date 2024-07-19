@@ -20,6 +20,13 @@ interface Props {
 }
 
 const CarCard = ({ car }: Props) => {
+  /*   const { updateItems } = useShoppingCartStore(); */
+  //If car gets refetched because the data has changed, the prop will update, it will be updated in the Store, if it exists in the store
+  /*   useEffect(() => {
+    updateItems(car);
+  }, [car, updateItems]);
+ */
+
   return (
     <Card>
       <CardBody>
