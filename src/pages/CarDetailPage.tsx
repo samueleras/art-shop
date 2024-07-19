@@ -1,5 +1,4 @@
 import { Box, Card, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
@@ -35,7 +34,18 @@ const CarDetailPage = () => {
     images: [ferrarisf8, ferrarif8png, ferrarisf90],
   };
 
-  const params = useParams();
+  /*   const { updateItems } = useShoppingCartStore();
+
+  const params = useParams(); */
+
+  /*   const { data: carData, error, isFetching } = useCar(params.id); */
+
+  //If car gets refetched because the data has changed, it will be updated in the Store, if it exists in the store
+  /*   useEffect(() => {
+    if (carData) {
+      updateItems(carData.data);
+    }
+  }, [carData, updateItems]); */
 
   //const { data, error, isFetching } = useCar(params.id);
 
