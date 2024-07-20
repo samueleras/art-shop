@@ -1,11 +1,12 @@
 import { Grid } from "@chakra-ui/react";
-import CarCard from "./CarCard";
-import Car from "../entities/Car";
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
+import Car from "../entities/Car";
+import CarCard from "./CarCard";
 
 const CarGrid = () => {
   //const { data, error, isFetching } = useCars();
+  /*  const skeletons = Array.from(Array(20).keys()); */
 
   let car: Car = {
     id: 1,
@@ -31,12 +32,12 @@ const CarGrid = () => {
 
   //if (error) throw new Error();
 
-  //if (isFetching) return <Spinner />;
   return (
     <Grid
       gap={3}
       gridTemplateColumns={{ base: "1fr", md: "1fr 1fr", lg: " 1fr 1fr 1fr" }}
     >
+      {/* isFetching && skeletons.map((key) => <CarCardSekelton key={key} />) */}
       {/* {data?.data.map((car) => (
         <CarCard car={car} key={car.id} />
       ))} */}
