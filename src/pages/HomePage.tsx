@@ -1,37 +1,63 @@
-import { Box, Heading, Text, Image, VStack } from "@chakra-ui/react";
-import ferrarisf90 from "../assets/ferrarisf90.avif";
+import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
+import video from "../assets/home_video.mp4";
 
 const HomePage = () => {
-  /*   const { data, error, isFetching } = useCar("14598");
+  /*   const { data, error, isFetching } = useCar("14598");*/
+  const bgcolor = useColorModeValue("gray.700", "gray.100");
+  const color = useColorModeValue("gray.100", "black");
 
-  if (error) throw new Error();
+  /*if (error) throw new Error();
 
   if (isFetching) return <Spinner />; */
 
   return (
     <>
-      <VStack>
-        <Box marginTop={8}>
-          <Heading size="2xl">Welcome to DreamCars</Heading>
+      <Box position="relative">
+        <Heading
+          position="absolute"
+          left="50%"
+          color={{ base: "white", sm: color }}
+          transform="translate(-50%, 0)"
+          top={{ base: "-2", lg: "-10" }}
+          fontFamily="monospace"
+          textShadow={{ base: "black 1px 0 10px", sm: "none" }}
+          fontSize="clamp(2.4rem, 6vw, 5rem)"
+          zIndex="1000"
+        >
+          DreamCars
+        </Heading>
+        <Box display={{ base: "none", sm: "block" }}>
+          <Box
+            backgroundColor={bgcolor}
+            width="7rem"
+            height="clamp(3rem, 6vw, 5rem)"
+            position="absolute"
+            top="0"
+            left="15%"
+            clipPath="polygon(0 0, 100% 0, 100% 100%, 0 0%)"
+          ></Box>
+          <Box
+            backgroundColor={bgcolor}
+            width="7rem"
+            height="clamp(3rem, 6vw, 5rem)"
+            position="absolute"
+            top="0"
+            right="15%"
+            clipPath="polygon(0 0, 100% 0, 0 100%, 0 0%)"
+          ></Box>
+          <Box
+            backgroundColor={bgcolor}
+            height="clamp(3rem, 6vw, 5rem)"
+            position="absolute"
+            top="0"
+            left="calc(15% + 7rem - 1px)"
+            right="calc(15% + 7rem - 1px)"
+          ></Box>
         </Box>
-
-        <Box p={3} borderRadius={5}>
-          <Heading size="lg">Todays feature</Heading>
-          <Box marginBlock={3}>
-            <Image
-              width="80vw"
-              src={ferrarisf90}
-              alt="Ferrari SF90"
-              aspectRatio="16:9"
-              objectFit="cover"
-              maxH="60vh"
-              objectPosition="0 0"
-            />
-          </Box>
-          <Text fontSize="2rem">Ferrari SF90 XX Spider</Text>
-          <Text fontSize="1.2rem">A Celebration of Excellence</Text>
+        <Box maxHeight="calc(100vh - 8rem)" overflow="hidden">
+          <video src={video} autoPlay muted loop />
         </Box>
-      </VStack>
+      </Box>
     </>
   );
 };

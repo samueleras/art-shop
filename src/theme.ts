@@ -51,7 +51,7 @@ const theme = extendTheme(
     components: {
       Heading: {
         defaultProps: {
-          size: {
+          fontSize: {
             base: "xl", // Standardgröße für kleine Bildschirme
             sm: "2xl", // Größe für kleine Bildschirme
             md: "3xl", // Größe für mittlere Bildschirme
