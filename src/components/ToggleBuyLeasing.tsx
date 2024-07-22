@@ -1,5 +1,5 @@
 import {
-  Button,
+  Box,
   HStack,
   Slider,
   SliderFilledTrack,
@@ -15,14 +15,15 @@ const ToggleBuyLeasing = () => {
   } = useCarQueryStore();
 
   return (
-    <HStack w="10rem" gap={5}>
-      <Button
+    <HStack w="11.5rem" gap={5}>
+      <Box
         onClick={() => buyOrLease === "lease" && toggleBuyOrLease()}
-        variant="ghost"
         color={buyOrLease === "buy" ? "red.600" : ""}
+        cursor="pointer"
+        fontWeight="bold"
       >
         Buy
-      </Button>
+      </Box>
       <Slider
         defaultValue={0}
         min={0}
@@ -36,13 +37,14 @@ const ToggleBuyLeasing = () => {
         </SliderTrack>
         <SliderThumb boxSize={4} boxShadow="0 0 3px black" />
       </Slider>
-      <Button
+      <Box
         onClick={() => buyOrLease === "buy" && toggleBuyOrLease()}
-        variant="ghost"
         color={buyOrLease === "lease" ? "red.600" : ""}
+        cursor="pointer"
+        fontWeight="bold"
       >
         Lease
-      </Button>
+      </Box>
     </HStack>
   );
 };
