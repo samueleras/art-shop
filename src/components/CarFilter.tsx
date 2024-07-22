@@ -71,7 +71,7 @@ const CarFilter = () => {
         </FilterContainer>
 
         <FilterContainer icon={BiDollarCircle} color={color}>
-          <Text minWidth="2.7rem" textAlign="right">
+          <Text minWidth="4.1rem" textAlign="right">
             {(query.carQuery.minPrice && query.carQuery.minPrice / 1000) || "0"}
             k$
           </Text>

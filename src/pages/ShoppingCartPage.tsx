@@ -53,7 +53,7 @@ const ShoppingCartPage = () => {
       </Text>
       <Grid
         gap={3}
-        gridTemplateColumns={{ base: "1fr", lg: "70% auto" }}
+        gridTemplateColumns={{ base: "1fr", lg: "auto min-content" }}
         alignItems="start"
       >
         <Card marginTop="2rem">

@@ -35,15 +35,28 @@ const CartCheckout = () => {
   return (
     <Stack gap="1rem">
       <Heading size="md">Cart Total</Heading>
-      <Grid gridTemplateColumns="1fr 1fr">
-        <Text>One-Time Cost:</Text>
-        <Text>${priceTagFormatter(overallCosts.oneTimeCost)}</Text>
-        <Text>Monthly Cost:</Text>
-        <Text>${priceTagFormatter(overallCosts.monthlyCosts)}</Text>
-        <Text>Shipping:</Text>
-        <Text>${priceTagFormatter(overallShippingCosts)}</Text>
-        <Text>Total{overallCosts.monthlyCosts != 0 && " (2 Years)"}:</Text>
-        <Text>
+      <Grid
+        gridTemplateColumns="1fr auto"
+        alignItems="center"
+        rowGap="0.3rem"
+        columnGap="0.6rem"
+      >
+        <Text whiteSpace="nowrap">One-Time Cost:</Text>
+        <Text whiteSpace="nowrap">
+          ${priceTagFormatter(overallCosts.oneTimeCost)}
+        </Text>
+        <Text whiteSpace="nowrap">Monthly Cost:</Text>
+        <Text whiteSpace="nowrap">
+          ${priceTagFormatter(overallCosts.monthlyCosts)}
+        </Text>
+        <Text whiteSpace="nowrap">Shipping:</Text>
+        <Text whiteSpace="nowrap">
+          ${priceTagFormatter(overallShippingCosts)}
+        </Text>
+        <Text whiteSpace="nowrap">
+          Total{overallCosts.monthlyCosts != 0 && " (2 Years)"}:
+        </Text>
+        <Text whiteSpace="nowrap">
           $
           {priceTagFormatter(
             overallCosts.oneTimeCost +
