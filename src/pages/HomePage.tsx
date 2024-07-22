@@ -23,8 +23,7 @@ const HomePage = () => {
           transform="translate(-50%, 0)"
           top={{ sm: "-2", lg: "-8" }}
           bottom={{ base: "5rem" }}
-          fontFamily="monospace"
-          fontSize={{ base: "2.8rem", sm: "clamp(2.4rem, 6vw, 4rem)" }}
+          fontSize={{ base: "2.4rem", sm: "clamp(1.7rem, 5vw, 3.6rem)" }}
           zIndex="99999"
         >
           DreamCars
@@ -38,6 +37,7 @@ const HomePage = () => {
             top="-1"
             left="15%"
             clipPath="polygon(0 0, 100% 0, 100% 100%, 0 0%)"
+            fontFamily="MyCustomFont"
           ></Box>
           <Box
             backgroundColor={bgcolor}

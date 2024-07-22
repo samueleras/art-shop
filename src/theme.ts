@@ -19,8 +19,19 @@ const theme = extendTheme(
         body: {
           color: mode("gray.900", "gray.100")(props),
           background: mode("gray.50", "gray.800")(props),
+          fontSize: {
+            base: "0.9rem",
+            sm: "0.9rem",
+            md: "1rem",
+            lg: "1rem",
+            xl: "1.1rem",
+          },
         },
       }),
+    },
+    fonts: {
+      heading: "'Body-Font', sans-serif",
+      body: "'Body-Font', sans-serif",
     },
     colors: {
       gray: {

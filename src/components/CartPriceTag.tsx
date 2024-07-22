@@ -11,7 +11,7 @@ interface Props {
 const CartPriceTag = ({ car, item: { buyOrLease, count } }: Props) => {
   return (
     <Text
-      fontSize="xl"
+      fontSize="lg"
       mb="3"
       fontWeight="bold"
       textAlign="center"
@@ -25,7 +25,7 @@ const CartPriceTag = ({ car, item: { buyOrLease, count } }: Props) => {
           {priceTagFormatter(car.leasing * count)}
           {" / month"}
           <br />
-          <Box as="span" whiteSpace="nowrap" fontSize={"xl"} color="gray.600">
+          <Box as="span" whiteSpace="nowrap" fontSize={"sm"} color="gray.600">
             2 year agreement
           </Box>
         </>

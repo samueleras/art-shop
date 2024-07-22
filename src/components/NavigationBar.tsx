@@ -67,7 +67,11 @@ const NavigationBar = () => {
               />
             </Box>
           </ChakraLink>
-          <Flex backgroundColor={"gray.400"} borderRadius="1rem">
+          <Flex
+            backgroundColor={"gray.400"}
+            borderRadius="1rem"
+            fontSize="0.9rem"
+          >
             <ChakraLink
               as={NavLink}
               to="/"

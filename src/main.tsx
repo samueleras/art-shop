@@ -7,6 +7,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "./components/routes";
 import theme from "./theme";
 import useShoppingCartStore from "./stores/shoppingCartStore";
+import "./fonts.css";
 
 const queryClient = new QueryClient();
 
