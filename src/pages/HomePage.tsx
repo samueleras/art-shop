@@ -58,7 +58,7 @@ const HomePage = () => {
           ></Box>
         </Box>
         <Box
-          height={{ base: "calc(100vh - 12rem)", sm: "calc(100vh - 8rem)" }}
+          height={{ base: "calc(100vh - 11rem)", sm: "calc(100vh - 7rem)" }}
           overflow="hidden"
         >
           <video
