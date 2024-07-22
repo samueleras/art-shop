@@ -24,7 +24,7 @@ const theme = extendTheme(
             sm: "0.9rem",
             md: "0.9rem",
             lg: "0.9rem",
-            xl: "0.9rem",
+            xl: "1rem",
           },
         },
       }),

@@ -45,6 +45,7 @@ const CarFilter = () => {
         gap={3}
         justifyContent="space-between"
         flexDir={"column"}
+        padding="0.5rem"
       >
         <FilterContainer icon={FaCar} color={color}>
           <Text>Type</Text>

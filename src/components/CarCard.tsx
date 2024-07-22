@@ -52,7 +52,7 @@ const CarCard = ({ car }: Props) => {
             />
           </AspectRatio>
         </ChakraLink>
-        <Stack mt="3" spacing="1">
+        <Stack mt="3" spacing="2">
           <CarPropertyIconBar car={car} />
           <Text>{car.shortDescription}</Text>
           <Text>{car.horsepower} HP</Text>
