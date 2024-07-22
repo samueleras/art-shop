@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
       <NavigationBar />
-      <Box marginBottom="4.5rem">
+      <Box marginBottom="4rem" marginTop={{ base: "8rem", sm: "4rem" }}>
         <Outlet />
       </Box>
       <Footer />

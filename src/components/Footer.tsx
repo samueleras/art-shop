@@ -14,9 +14,9 @@ const Footer = () => {
       bottom="0"
       width="100%"
     >
-      <Text>Help</Text>
-      <Text>Impressum</Text>
-      <Text>Terms & Conditions</Text>
+      <Text cursor="pointer">Help</Text>
+      <Text cursor="pointer">Impressum</Text>
+      <Text cursor="pointer">Terms & Conditions</Text>
     </Flex>
   );
 };

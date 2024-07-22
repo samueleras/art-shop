@@ -32,6 +32,10 @@ const NavigationBar = () => {
         flexDirection={{ base: "column", sm: "row" }}
         padding={{ base: "1rem", sm: "0" }}
         gap={{ base: "1rem", sm: "0" }}
+        position="fixed"
+        top="0"
+        width="100%"
+        zIndex="99999"
       >
         <Flex alignItems="center" gap={1}>
           <ChakraLink as={NavLink} to="/">

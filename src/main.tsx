@@ -18,6 +18,22 @@ const App = () => {
     initializeItems();
   }, [initializeItems]);
 
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        document.documentElement.setAttribute("data-scroll", "0");
+      } else {
+        document.documentElement.removeAttribute("data-scroll");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>

@@ -1,6 +1,7 @@
 import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 import video from "../assets/home_video.mp4";
 import FeatureOfTheDay from "../components/FeatureOfTheDay";
+import styles from "../css/HomePage.module.css";
 
 const HomePage = () => {
   /*   const { data, error, isFetching } = useCar("14598");*/
@@ -15,6 +16,7 @@ const HomePage = () => {
     <>
       <Box position="relative">
         <Heading
+          className={styles.heading}
           position="absolute"
           left="50%"
           color={{ base: "white", sm: color }}
@@ -23,7 +25,7 @@ const HomePage = () => {
           bottom={{ base: "5rem" }}
           fontFamily="monospace"
           fontSize={{ base: "2.8rem", sm: "clamp(2.4rem, 6vw, 4rem)" }}
-          zIndex="1000"
+          zIndex="99999"
         >
           DreamCars
         </Heading>
