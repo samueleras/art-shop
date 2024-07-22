@@ -13,7 +13,7 @@ const ShopPriceTag = ({ car }: Props) => {
   } = useCarQueryStore();
 
   return (
-    <Text fontSize="2xl" mb="3" lineHeight="1.7rem">
+    <Text fontSize="xl" mb="3" lineHeight="1.7rem">
       $
       {buyOrLease === "buy" ? (
         `${priceTagFormatter(car.price)}`
@@ -22,7 +22,7 @@ const ShopPriceTag = ({ car }: Props) => {
           {priceTagFormatter(car.leasing)}
           {" / month"}
           <br />
-          <Box as="span" whiteSpace="nowrap" fontSize={"xl"} color="gray.600">
+          <Box as="span" whiteSpace="nowrap" fontSize={"lg"} color="gray.600">
             2 year agreement
           </Box>
         </>
