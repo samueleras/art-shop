@@ -15,7 +15,7 @@ const ToggleBuyLeasing = () => {
   } = useCarQueryStore();
 
   return (
-    <HStack w="11.5rem" gap={5}>
+    <HStack w="10.5rem" gap={5}>
       <Box
         onClick={() => buyOrLease === "lease" && toggleBuyOrLease()}
         color={buyOrLease === "buy" ? "red.600" : ""}

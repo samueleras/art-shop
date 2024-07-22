@@ -22,9 +22,9 @@ const theme = extendTheme(
           fontSize: {
             base: "0.9rem",
             sm: "0.9rem",
-            md: "1rem",
-            lg: "1rem",
-            xl: "1.1rem",
+            md: "0.9rem",
+            lg: "0.9rem",
+            xl: "0.9rem",
           },
         },
       }),

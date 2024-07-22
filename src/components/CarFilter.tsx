@@ -47,7 +47,7 @@ const CarFilter = () => {
         flexDir={"column"}
       >
         <FilterContainer icon={FaCar} color={color}>
-          <Text fontSize="lg">Type</Text>
+          <Text>Type</Text>
           <Select
             onChange={(event) => {
               query.setVehicleType(
@@ -96,7 +96,7 @@ const CarFilter = () => {
             <RangeSliderThumb index={0} boxSize="4" boxShadow="0 0 3px black" />
             <RangeSliderThumb index={1} boxSize="4" boxShadow="0 0 3px black" />
           </RangeSlider>
-          <Text whiteSpace="nowrap" minWidth="3.5rem">
+          <Text whiteSpace="nowrap" minWidth="5rem">
             {!query.carQuery.maxPrice
               ? "no limit"
               : query.carQuery.maxPrice / 1000 + "k$"}
@@ -104,7 +104,7 @@ const CarFilter = () => {
         </FilterContainer>
 
         <FilterContainer icon={IoMdPerson} color={color}>
-          <Text fontSize="lg">Seats</Text>
+          <Text>Seats</Text>
           <RadioGroup
             value={query.carQuery.passengerCount?.toString() || "any"}
             onChange={(value) => {
@@ -112,15 +112,21 @@ const CarFilter = () => {
             }}
           >
             <Flex gap={2}>
-              <Radio value="2">2</Radio>
-              <Radio value="4">4</Radio>
-              <Radio value="any">Any</Radio>
+              <Radio value="2">
+                <Text fontSize="0.9rem">2</Text>
+              </Radio>
+              <Radio value="4">
+                <Text fontSize="0.9rem">4</Text>
+              </Radio>
+              <Radio value="any">
+                <Text fontSize="0.9rem">Any</Text>
+              </Radio>
             </Flex>
           </RadioGroup>
         </FilterContainer>
 
         <FilterContainer icon={GiCarDoor} color={color}>
-          <Text fontSize="lg">Doors</Text>
+          <Text>Doors</Text>
           <RadioGroup
             value={query.carQuery.doorCount?.toString() || "any"}
             onChange={(value) => {
@@ -128,16 +134,21 @@ const CarFilter = () => {
             }}
           >
             <Flex gap={2}>
-              <Radio value="2">2</Radio>
-              <Radio value="4">4</Radio>
-              <Radio value="any">Any</Radio>
+              <Radio value="2">
+                <Text fontSize="0.9rem">2</Text>
+              </Radio>
+              <Radio value="4">
+                <Text fontSize="0.9rem">4</Text>
+              </Radio>
+              <Radio value="any">
+                <Text fontSize="0.9rem">Any</Text>
+              </Radio>
             </Flex>
           </RadioGroup>
         </FilterContainer>
 
         <FilterContainer icon={TbManualGearbox} color={color}>
           <Button
-            fontSize="lg"
             variant="link"
             whiteSpace="normal"
             textAlign="left"
@@ -160,7 +171,6 @@ const CarFilter = () => {
 
         <FilterContainer icon={TbAutomaticGearbox} color={color}>
           <Button
-            fontSize="lg"
             variant="link"
             whiteSpace="normal"
             textAlign="left"
@@ -180,10 +190,7 @@ const CarFilter = () => {
         </FilterContainer>
 
         <FilterContainer icon={GiHorseHead} color={color}>
-          <Text
-            fontSize="lg"
-            color={query.carQuery.minHorsePower ? color : "gray.500"}
-          >
+          <Text color={query.carQuery.minHorsePower ? color : "gray.500"}>
             Horsepower
           </Text>
           <Slider
@@ -206,6 +213,7 @@ const CarFilter = () => {
               mt="-8"
               ml="-50"
               w="24"
+              fontSize="0.8rem"
               visibility={
                 query.carQuery.minHorsePower && query.carQuery.minHorsePower > 1
                   ? "visible"
@@ -224,7 +232,6 @@ const CarFilter = () => {
 
         <FilterContainer icon={MdElectricCar} color={color}>
           <Button
-            fontSize="lg"
             variant="link"
             whiteSpace="normal"
             textAlign="left"
