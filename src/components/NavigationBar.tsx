@@ -5,21 +5,30 @@ import {
   Image,
   Text,
   useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import DarkModeSwitch from "./DarkModeSwitch";
-import SearchBar from "./SearchBar";
 import SearchButton from "./SearchButton";
 import ShoppingCartButton from "./ShoppingCartButton";
 
-const NavigationBar = () => {
+interface Props {
+  toggleSearchbar: () => void;
+  searchbarOpened: boolean;
+}
+
+const NavigationBar = ({ toggleSearchbar, searchbarOpened }: Props) => {
   const bgcolor = useColorModeValue("gray.700", "gray.100");
   const color = useColorModeValue("gray.100", "black");
   const logobg = useColorModeValue("black", "white");
   let activeLink = "red.600";
-  const { isOpen, onToggle } = useDisclosure();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== "/shop" && searchbarOpened) toggleSearchbar();
+  }, [location]);
 
   return (
     <>
@@ -107,16 +116,17 @@ const NavigationBar = () => {
           gap={{ md: "1rem" }}
           paddingRight="1rem"
         >
-          <SearchButton
-            onClick={() => {
-              isOpen || onToggle();
-            }}
-          />
+          {location.pathname === "/shop" && (
+            <SearchButton
+              onClick={() => {
+                toggleSearchbar();
+              }}
+            />
+          )}
           <DarkModeSwitch />
           <ShoppingCartButton />
         </Flex>
       </Flex>
-      <SearchBar isOpen={isOpen} onClick={onToggle} />
     </>
   );
 };
