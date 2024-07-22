@@ -39,7 +39,7 @@ const ShoppingCartItemBox = ({
           <Box>
             <Image
               objectFit="contain"
-              maxW="150px"
+              maxW={{ base: "120px", sm: "150px" }}
               src={car.png}
               alt={`${car.brand}${car.model}image`}
               height="100%"
