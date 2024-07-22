@@ -46,7 +46,9 @@ const CartCheckout = () => {
         <Text>
           $
           {priceTagFormatter(
-            overallCosts.oneTimeCost + overallCosts.monthlyCosts
+            overallCosts.oneTimeCost +
+              overallCosts.monthlyCosts +
+              overallShippingCosts
           )}
         </Text>
       </Grid>
