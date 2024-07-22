@@ -59,12 +59,10 @@ const CarDetailPage = () => {
         />
         <Box textAlign="center" position="absolute" bottom={"5%"} width="100%">
           <Heading>{`${car.brand} ${car.model}`}</Heading>
-          <Text fontSize="md" color="darkslategray">
-            {car.shortDescription}
-          </Text>
+          <Text color="darkslategray">{car.shortDescription}</Text>
         </Box>
       </Box>
-      <Text textAlign="center" fontSize="lg" p="2rem">
+      <Text textAlign="center" p="2rem">
         {car.description}
       </Text>
       <Box width="fit-content" margin="auto" marginBottom="1rem">
@@ -95,7 +93,7 @@ const CarDetailPage = () => {
           <AddToCart car={car} />
         </Stack>
       </Card>
-      <Text fontSize="lg" p="2rem">
+      <Text p="2rem">
         {"Kraftstoffverbrauch (gewichtet kombiniert): " + car.fuelConsumption}
         <br />
         {"CO2-Emissionen (gewichtet kombiniert): " + car.emissions}
