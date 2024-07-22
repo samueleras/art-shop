@@ -1,59 +1,26 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
   CardHeader,
-  Collapse,
   Grid,
   Heading,
-  Input,
-  Select,
   Stack,
   StackDivider,
   Text,
-  useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
 import ferrarif8png from "../assets/f8png.avif";
 import ferrarisf8 from "../assets/ferrarif8.jpg";
 import ferrarisf90 from "../assets/ferrarisf90.avif";
+import CartCheckout from "../components/CartCheckout";
+import CartCouponCode from "../components/CartCouponCode";
+import CartShipping from "../components/CartShipping";
 import ShoppingCartItemBox from "../components/ShoppingCartItemBox";
 import Car from "../entities/Car";
-import priceTagFormatter from "../services/priceTagFormatter";
 import useShoppingCartStore from "../stores/shoppingCartStore";
 
 const ShoppingCartPage = () => {
-  const { items, overallCosts, overallItemCount } = useShoppingCartStore();
-  const [shippingCost, setShippingCost] = useState(209.99);
-  const { isOpen, onToggle } = useDisclosure();
-
-  const couponCodeRef = useRef<HTMLInputElement>(null);
-  const couponValidationRef = useRef<HTMLInputElement>(null);
-
-  const submitCode = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!couponCodeRef.current || couponCodeRef.current.value.trim() === "") {
-      if (couponValidationRef.current) {
-        couponValidationRef.current.textContent =
-          "Please enter a coupon code...";
-      }
-    } else {
-      if (couponValidationRef.current) {
-        couponValidationRef.current.textContent = "Code not valid.";
-      }
-    }
-    isOpen || onToggle();
-  };
-
-  useEffect(() => {
-    if (isOpen) {
-      const timer = setTimeout(() => {
-        onToggle();
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen, onToggle]);
+  const { items, overallItemCount } = useShoppingCartStore();
 
   let car: Car = {
     id: 1,
@@ -120,52 +87,9 @@ const ShoppingCartPage = () => {
         <Card marginTop={{ base: "1rem", lg: "-4rem" }}>
           <CardBody>
             <Stack divider={<StackDivider />} spacing="4">
-              <Stack gap="1rem">
-                <Heading size="md">Shipping</Heading>
-                <Select
-                  value={shippingCost}
-                  onChange={(event) =>
-                    setShippingCost(Number(event.target.value))
-                  }
-                >
-                  <option value={209.99}>Standard $209.99 / Car</option>
-                  <option value={419.99}>Express $419.99 / Car</option>
-                </Select>
-              </Stack>
-              <form onSubmit={(event) => submitCode(event)}>
-                <Stack gap="1rem">
-                  <Heading size="md">Coupon Code</Heading>
-                  <Input placeholder="Enter code..." ref={couponCodeRef} />
-                  <Button type="submit">Submit</Button>
-                  <Collapse in={isOpen} animateOpacity>
-                    <Box color="red.600" fontWeight="bold" bg="white">
-                      <Text ref={couponValidationRef}>Code not valid.</Text>
-                    </Box>
-                  </Collapse>
-                </Stack>
-              </form>
-              <Stack gap="1rem">
-                <Heading size="md">Cart Total</Heading>
-                <Grid gridTemplateColumns="1fr 1fr">
-                  <Text>One-Time Cost:</Text>
-                  <Text>${priceTagFormatter(overallCosts.oneTimeCost)}</Text>
-                  <Text>Monthly Cost:</Text>
-                  <Text>${priceTagFormatter(overallCosts.monthlyCosts)}</Text>
-                  <Text>Shipping:</Text>
-                  <Text>
-                    ${priceTagFormatter(shippingCost * overallItemCount)}
-                  </Text>
-                  <Text>
-                    Total{overallCosts.monthlyCosts != 0 && " (2 Years)"}:
-                  </Text>
-                  <Text>
-                    $
-                    {priceTagFormatter(
-                      overallCosts.oneTimeCost + overallCosts.monthlyCosts
-                    )}
-                  </Text>
-                </Grid>
-              </Stack>
+              <CartShipping />
+              <CartCouponCode />
+              <CartCheckout />
             </Stack>
           </CardBody>
         </Card>

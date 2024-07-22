@@ -17,11 +17,14 @@ interface ShoppingCartStore {
   items: ShoppingCartItem[];
   overallCosts: Cost;
   overallItemCount: number;
+  overallShippingCosts: number;
+  selectedShippingCost: number;
   addItem: (carId: number, buyOrLease: "buy" | "lease", car: Car) => void;
   incrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
   decrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
   updateItems: (car: Car) => void;
   initializeItems: () => void;
+  setSelectedShippingCost: (cost: number) => void;
 }
 
 const getInitialShoppingCartItems = () => {
@@ -33,7 +36,10 @@ const setLocalStorage = (items: ShoppingCartItem[]) => {
   localStorage.setItem("DreamCarsShoppingCartItems", JSON.stringify(items));
 };
 
-const calculateNewState = (items: ShoppingCartItem[]) => {
+const calculateNewState = (
+  items: ShoppingCartItem[],
+  selectedShippingCost: number
+) => {
   let oneTimeCost = 0;
   let monthlyCosts = 0;
   let itemCount = 0;
@@ -51,6 +57,7 @@ const calculateNewState = (items: ShoppingCartItem[]) => {
     items,
     overallCosts: { oneTimeCost, monthlyCosts },
     overallItemCount: itemCount,
+    overallShippingCosts: itemCount * selectedShippingCost,
   } as ShoppingCartStore;
 };
 
@@ -58,6 +65,8 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
   items: getInitialShoppingCartItems(),
   overallCosts: { oneTimeCost: 0, monthlyCosts: 0 },
   overallItemCount: 0,
+  overallShippingCosts: 0,
+  selectedShippingCost: 209.99,
   addItem: (carId, buyOrLease, car) =>
     set((store) => {
       let existing = false;
@@ -78,7 +87,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
         } as ShoppingCartItem);
       }
       setLocalStorage(updatedItems);
-      return calculateNewState(updatedItems);
+      return calculateNewState(updatedItems, store.selectedShippingCost);
     }),
   incrementCount: (carId, buyOrLease) =>
     set((store) => {
@@ -90,7 +99,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
         }
       });
       setLocalStorage(updatedItems);
-      return calculateNewState(updatedItems);
+      return calculateNewState(updatedItems, store.selectedShippingCost);
     }),
   decrementCount: (carId, buyOrLease) =>
     set((store) => {
@@ -107,7 +116,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
         }
       });
       setLocalStorage(updatedItems);
-      return calculateNewState(updatedItems);
+      return calculateNewState(updatedItems, store.selectedShippingCost);
     }),
   updateItems: (car) =>
     set((store) => {
@@ -119,12 +128,19 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
         }
       });
       setLocalStorage(updatedItems);
-      return calculateNewState(updatedItems);
+      return calculateNewState(updatedItems, store.selectedShippingCost);
     }),
   initializeItems: () =>
-    set(() => {
+    set((store) => {
       const initialItems = getInitialShoppingCartItems();
-      return calculateNewState(initialItems);
+      return calculateNewState(initialItems, store.selectedShippingCost);
+    }),
+  setSelectedShippingCost: (cost) =>
+    set((store) => {
+      return {
+        selectedShippingCost: cost,
+        overallShippingCosts: cost * store.overallItemCount,
+      };
     }),
 }));
 
