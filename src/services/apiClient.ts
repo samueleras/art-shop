@@ -1,12 +1,13 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-export interface FetchDataResponse<T> {
-  config: { iiif_url: string };
+/* export interface FetchDataResponse<T> {
   data: T;
-}
+} */
+
+const API_Url = import.meta.env.VITE_API_URL;
 
 const axiosInstance = axios.create({
-  baseURL: "https://api.artic.edu/api/v1/", //Backend URl
+  baseURL: API_Url, //Backend URl
 });
 
 class APIClient<T> {
@@ -17,14 +18,12 @@ class APIClient<T> {
   }
 
   getAll = (config?: AxiosRequestConfig) =>
-    axiosInstance
-      .get<FetchDataResponse<T[]>>(this.endpoint, config)
-      .then((res) => res.data);
+    axiosInstance.get<T[]>(this.endpoint, config).then((res) => res.data);
 
-  get = (idOrSlug?: number | string, config?: AxiosRequestConfig) => {
-    if (idOrSlug === undefined) return {} as FetchDataResponse<T>;
+  get = (id: String, config?: AxiosRequestConfig) => {
+    if (id === undefined) return {} as T;
     return axiosInstance
-      .get<FetchDataResponse<T>>(this.endpoint + "/" + idOrSlug, config)
+      .get<T>(this.endpoint + "/" + id, config)
       .then((res) => res.data);
   };
 }
