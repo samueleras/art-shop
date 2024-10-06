@@ -5,48 +5,43 @@ import {
   CardHeader,
   Grid,
   Heading,
+  Spinner,
   Stack,
   StackDivider,
   Text,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import CartCheckout from "../components/CartCheckout";
 import CartCouponCode from "../components/CartCouponCode";
 import CartShipping from "../components/CartShipping";
 import ShoppingCartItemBox from "../components/ShoppingCartItemBox";
-import useCar from "../hooks/useCar";
+import useCarBulk from "../hooks/useCarsBulk";
 import useShoppingCartStore from "../stores/shoppingCartStore";
-import { useEffect } from "react";
 
 const ShoppingCartPage = () => {
   const { items, overallItemCount, updateItems } = useShoppingCartStore();
 
-  //Exchange this with bulk query and add loading state
-  for (let x of items) {
-    const { data: car, error } = useCar(x.carId);
-    if (car) {
-      updateItems(car);
-    } else {
-      throw (
-        error || new Error("An unknown error occurred while fetching the car.")
+  let ids = items.map((item) => item.carId);
+
+  if (ids.length > 0) {
+    const { data: cars, error, isFetching } = useCarBulk(ids);
+
+    useEffect(() => {
+      if (cars) {
+        updateItems(cars); // Update the store with fetched cars after fetch finished
+      }
+    }, [cars, updateItems]);
+
+    if (isFetching) {
+      return (
+        <Box>
+          <Spinner size="xl" />
+        </Box>
       );
     }
+
+    if (error) throw error;
   }
-
-  /*   useEffect(() => {
-    if (cars) {
-      updateItems(cars);  // Update the store with fetched cars after fetch finished
-    }
-  }, [cars, updateItems]); */
-
-  /*   if (isFetching) {
-    return (
-      <Box>
-        <Spinner size="xl" />
-      </Box>
-    );
-  } */
-
-  /* if (error) throw error; */
 
   return (
     <Box padding="2rem" margin="auto" width={{ base: "100%", xl: "80%" }}>
