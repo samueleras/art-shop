@@ -18,7 +18,7 @@ const AddToCart = ({ car }: Props) => {
       variant="solid"
       gap={3}
       width={"fit-content"}
-      onClick={() => addItem(car.id, buyOrLease, car)}
+      onClick={() => addItem(car._id, buyOrLease, car)}
     >
       <Icon as={FaCartShopping} color={"gray.700"} />
       Add to cart
