@@ -26,6 +26,13 @@ class APIClient<T> {
       .get<T>(this.endpoint + "/" + id, config)
       .then((res) => res.data);
   };
+
+  getBulk = (ids: String[], config?: AxiosRequestConfig) => {
+    if (ids === undefined) return [] as T[];
+    return axiosInstance
+      .post<T[]>(this.endpoint, { ids }, config)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;
