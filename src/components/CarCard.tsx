@@ -20,17 +20,12 @@ interface Props {
 }
 
 const CarCard = ({ car }: Props) => {
-  /*   const { updateItems } = useShoppingCartStore(); */
-  //If car gets refetched because the data has changed, the prop will update, it will be updated in the Store, if it exists in the store
-  /*   useEffect(() => {
-    updateItems(car);
-  }, [car, updateItems]);
- */
+  const imgUrl = import.meta.env.VITE_API_URL + "/car_images/";
 
   return (
     <Card>
       <CardBody>
-        <ChakraLink as={Link} to="/shop/item/1">
+        <ChakraLink as={Link} to={`/shop/item/${car._id}`}>
           <Heading size="lg">
             {car.brand} {car.model}
           </Heading>
@@ -38,12 +33,12 @@ const CarCard = ({ car }: Props) => {
         <Text mb="1" fontSize="rem">
           {car.type}
         </Text>
-        <ChakraLink as={Link} to="/shop/item/1">
+        <ChakraLink as={Link} to={`/shop/item/${car._id}`}>
           <AspectRatio w="100%" ratio={1}>
             <Image
               objectFit="cover"
               width="100%"
-              src={car.png}
+              src={imgUrl + car.png}
               alt={car.model + "_image"}
               onError={(e) => {
                 e.currentTarget.onerror = null;
