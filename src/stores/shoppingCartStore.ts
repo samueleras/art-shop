@@ -22,7 +22,7 @@ interface ShoppingCartStore {
   addItem: (carId: String, buyOrLease: "buy" | "lease", car: Car) => void;
   incrementCount: (id: String, buyOrLease: "buy" | "lease") => void;
   decrementCount: (id: String, buyOrLease: "buy" | "lease") => void;
-  updateItems: (car: Car) => void;
+  updateItems: (cars: Car[]) => void;
   initializeItems: () => void;
   setSelectedShippingCost: (cost: number) => void;
 }
@@ -118,14 +118,15 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
       setLocalStorage(updatedItems);
       return calculateNewState(updatedItems, store.selectedShippingCost);
     }),
-  updateItems: (car) =>
+  updateItems: (cars) =>
     set((store) => {
+      const carMap = new Map(cars.map((car) => [car._id, car]));
       const updatedItems = store.items.map((item) => {
-        if (item.carId === car._id) {
-          return { ...item, car: car };
-        } else {
-          return item;
+        const updatedCar = carMap.get(item.carId);
+        if (updatedCar) {
+          return { ...item, car: updatedCar };
         }
+        return item;
       });
       setLocalStorage(updatedItems);
       return calculateNewState(updatedItems, store.selectedShippingCost);
