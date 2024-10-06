@@ -10,6 +10,8 @@ interface Props {
 const ImageGallery = ({ car }: Props) => {
   const [currentImg, setCurrentImg] = useState(0);
 
+  const imgUrl = import.meta.env.VITE_API_URL + "/car_images/";
+
   return (
     <AspectRatio
       ratio={16 / 9}
@@ -23,7 +25,7 @@ const ImageGallery = ({ car }: Props) => {
         <Image
           objectFit="cover"
           width="100%"
-          src={car.images ? car.images[currentImg] : car.thumbnail}
+          src={car.images ? imgUrl + car.images[currentImg] : car.thumbnail}
           alt={`${car.brand}${car.model}image`}
         />
         <Box
