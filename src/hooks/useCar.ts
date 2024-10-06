@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import APIClient, { FetchDataResponse } from "../services/apiClient";
+import APIClient from "../services/apiClient";
 import Car from "../entities/Car";
 
-const artPieceClient = new APIClient<Car>("/cars");
+const carClient = new APIClient<Car>("/car");
 
-const useCar = (id?: string) => {
-  return useQuery<FetchDataResponse<Car>>({
+const useCar = (id: String) => {
+  return useQuery<Car>({
     queryKey: ["car"],
-    queryFn: () => artPieceClient.get(id),
+    queryFn: () => carClient.get(id),
     staleTime: 10 * 1000,
   });
 };
