@@ -2,7 +2,7 @@ import { create } from "zustand";
 import Car from "../entities/Car";
 
 export interface ShoppingCartItem {
-  carId: number;
+  carId: String;
   count: number;
   buyOrLease: "buy" | "lease";
   car: Car;
@@ -19,9 +19,9 @@ interface ShoppingCartStore {
   overallItemCount: number;
   overallShippingCosts: number;
   selectedShippingCost: number;
-  addItem: (carId: number, buyOrLease: "buy" | "lease", car: Car) => void;
-  incrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
-  decrementCount: (id: number, buyOrLease: "buy" | "lease") => void;
+  addItem: (carId: String, buyOrLease: "buy" | "lease", car: Car) => void;
+  incrementCount: (id: String, buyOrLease: "buy" | "lease") => void;
+  decrementCount: (id: String, buyOrLease: "buy" | "lease") => void;
   updateItems: (car: Car) => void;
   initializeItems: () => void;
   setSelectedShippingCost: (cost: number) => void;
@@ -121,7 +121,7 @@ const useShoppingCartStore = create<ShoppingCartStore>((set) => ({
   updateItems: (car) =>
     set((store) => {
       const updatedItems = store.items.map((item) => {
-        if (item.carId === car.id) {
+        if (item.carId === car._id) {
           return { ...item, car: car };
         } else {
           return item;
