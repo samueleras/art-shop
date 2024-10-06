@@ -24,6 +24,8 @@ const ShoppingCartItemBox = ({
 }: Props) => {
   const { decrementCount, incrementCount } = useShoppingCartStore();
 
+  const imgUrl = import.meta.env.VITE_API_URL + "/car_images/";
+
   return (
     <Grid
       gap={3}
@@ -37,7 +39,7 @@ const ShoppingCartItemBox = ({
             <Image
               objectFit="contain"
               maxW={{ base: "120px", sm: "150px" }}
-              src={car.png}
+              src={imgUrl + car.png}
               alt={`${car.brand}${car.model}image`}
               height="100%"
             />
