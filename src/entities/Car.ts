@@ -1,5 +1,5 @@
 export default interface Car {
-  id: number;
+  _id: String;
   brand: string;
   model: string;
   type: "coupe" | "convertible" | "suv";
