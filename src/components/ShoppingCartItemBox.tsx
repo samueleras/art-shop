@@ -8,7 +8,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { CiSquareMinus, CiSquarePlus } from "react-icons/ci";
-import Car from "../entities/Car";
 import useShoppingCartStore, {
   ShoppingCartItem,
 } from "../stores/shoppingCartStore";
@@ -16,13 +15,11 @@ import CarPropertyIconBar from "./CarPropertyIconBar";
 import CartPriceTag from "./CartPriceTag";
 
 interface Props {
-  car: Car;
   item: ShoppingCartItem;
 }
 
 const ShoppingCartItemBox = ({
-  car,
-  item: { buyOrLease, count },
+  item: { buyOrLease, count, car },
   item,
 }: Props) => {
   const { decrementCount, incrementCount } = useShoppingCartStore();
@@ -57,14 +54,14 @@ const ShoppingCartItemBox = ({
           <CiSquareMinus
             size="1.5rem"
             cursor="pointer"
-            onClick={() => decrementCount(car.id, buyOrLease)}
+            onClick={() => decrementCount(car._id, buyOrLease)}
           />
         </button>
         <Text size="md">{count}</Text>
         <button>
           <CiSquarePlus
             size="1.5rem"
-            onClick={() => incrementCount(car.id, buyOrLease)}
+            onClick={() => incrementCount(car._id, buyOrLease)}
             cursor="pointer"
           />
         </button>
