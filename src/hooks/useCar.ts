@@ -6,9 +6,10 @@ const carClient = new APIClient<Car>("/car");
 
 const useCar = (id: String) => {
   return useQuery<Car>({
-    queryKey: ["car"],
+    queryKey: ["car", id],
     queryFn: () => carClient.get(id),
     staleTime: 10 * 1000,
+    refetchOnWindowFocus: true,
   });
 };
 

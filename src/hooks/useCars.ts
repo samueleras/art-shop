@@ -9,6 +9,7 @@ const useCars = () => {
     queryKey: ["cars"],
     queryFn: carsClient.getAll,
     staleTime: 10 * 1000,
+    refetchOnWindowFocus: true,
   });
 };
 
