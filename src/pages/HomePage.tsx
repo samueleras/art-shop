@@ -1,4 +1,10 @@
-import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  useColorModeValue,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import video from "../assets/home_video.webm";
 import FeatureOfTheDay from "../components/FeatureOfTheDay";
 import styles from "../css/HomePage.module.css";
@@ -69,7 +75,14 @@ const HomePage = () => {
           />
         </Box>
       </Box>
-      <FeatureOfTheDay />
+      <ChakraLink
+        as={Link}
+        to={`/shop/item/67042423abe4626aea4d1c43`}
+        textDecoration="none"
+        _hover={{ textDecoration: "none" }}
+      >
+        <FeatureOfTheDay />
+      </ChakraLink>
     </>
   );
 };
