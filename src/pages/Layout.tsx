@@ -1,6 +1,6 @@
 import { Box, useDisclosure } from "@chakra-ui/react";
 import NavigationBar from "../components/NavigationBar";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 
@@ -15,6 +15,7 @@ const Layout = () => {
         <Outlet />
       </Box>
       <Footer />
+      <ScrollRestoration />
     </>
   );
 };
