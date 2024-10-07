@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export interface CarQuery {
   buyOrLease: "buy" | "lease";
-  vehicleType?: "suv" | "coupe" | "convertible";
+  vehicleType?: "suv" | "coupe" | "convertible" | "sedan";
   gearboxType?: "automatic" | "manual";
   minHorsePower?: number;
   onlyElectric?: boolean;
@@ -18,7 +18,9 @@ export interface CarQuery {
 interface CarQueryStore {
   carQuery: CarQuery;
   toggleBuyOrLease: () => void;
-  setVehicleType: (vehicleType?: "suv" | "coupe" | "convertible") => void;
+  setVehicleType: (
+    vehicleType?: "suv" | "coupe" | "convertible" | "sedan"
+  ) => void;
   setGearboxType: (gearboxType?: "automatic" | "manual") => void;
   setMinHorsePower: (minHorsePower?: number) => void;
   setOnlyElectric: (isElectric?: boolean) => void;

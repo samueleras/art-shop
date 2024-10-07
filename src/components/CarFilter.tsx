@@ -59,7 +59,8 @@ const CarFilter = () => {
                       | undefined
                       | "coupe"
                       | "convertible"
-                      | "suv")
+                      | "suv"
+                      | "sedan")
               );
             }}
             value={query.carQuery.vehicleType || "any"}
@@ -68,6 +69,7 @@ const CarFilter = () => {
             <option value="coupe">Coupe</option>
             <option value="convertible">Convertible</option>
             <option value="suv">SUV</option>
+            <option value="sedan">Sedan</option>
           </Select>
         </FilterContainer>
 
