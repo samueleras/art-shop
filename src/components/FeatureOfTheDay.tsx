@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Heading, Image, Text } from "@chakra-ui/react";
-import laFerrari from "../assets/la_ferrari.jpg";
+import laFerrari from "../assets/la_ferrari.avif";
 
 const FeatureOfTheDay = () => {
   return (

@@ -1,16 +1,11 @@
 import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
-import video from "../assets/home_video.mp4";
+import video from "../assets/home_video.webm";
 import FeatureOfTheDay from "../components/FeatureOfTheDay";
 import styles from "../css/HomePage.module.css";
 
 const HomePage = () => {
-  /*   const { data, error, isFetching } = useCar("14598");*/
   const bgcolor = useColorModeValue("gray.700", "gray.100");
   const color = useColorModeValue("gray.100", "black");
-
-  /*if (error) throw new Error();
-
-  if (isFetching) return <Spinner />; */
 
   return (
     <>

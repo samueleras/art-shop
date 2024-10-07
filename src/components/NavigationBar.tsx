@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 import DarkModeSwitch from "./DarkModeSwitch";
 import SearchButton from "./SearchButton";
 import ShoppingCartButton from "./ShoppingCartButton";
