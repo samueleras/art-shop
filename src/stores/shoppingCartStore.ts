@@ -48,7 +48,7 @@ const calculateNewState = (
     if (x.buyOrLease === "buy") {
       oneTimeCost += x.car.price * x.count;
     } else if (x.buyOrLease === "lease") {
-      monthlyCosts += x.car.leasing * x.count * 24;
+      monthlyCosts += x.car.leasing * x.count;
     }
     itemCount += x.count;
   }

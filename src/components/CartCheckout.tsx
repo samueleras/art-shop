@@ -60,7 +60,7 @@ const CartCheckout = () => {
           $
           {priceTagFormatter(
             overallCosts.oneTimeCost +
-              overallCosts.monthlyCosts +
+              overallCosts.monthlyCosts * 24 +
               overallShippingCosts
           )}
         </Text>
