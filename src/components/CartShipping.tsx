@@ -8,6 +8,7 @@ const CartShipping = () => {
     <Stack gap="1rem">
       <Heading size="md">Shipping</Heading>
       <Select
+        size={{ base: "md", lg: "xs" }}
         value={selectedShippingCost}
         onChange={(event) =>
           setSelectedShippingCost(Number(event.target.value))

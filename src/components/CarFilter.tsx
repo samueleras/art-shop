@@ -50,6 +50,7 @@ const CarFilter = () => {
         <FilterContainer icon={FaCar} color={color}>
           <Text>Type</Text>
           <Select
+            size={"sm"}
             onChange={(event) => {
               query.setVehicleType(
                 event.target.value == "any"

@@ -8,6 +8,7 @@ import router from "./components/routes";
 import theme from "./theme";
 import useShoppingCartStore from "./stores/shoppingCartStore";
 import "./fonts.css";
+import "./index.css";
 
 const queryClient = new QueryClient();
 
