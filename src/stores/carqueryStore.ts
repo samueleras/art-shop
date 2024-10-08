@@ -23,7 +23,7 @@ interface CarQueryStore {
   ) => void;
   setGearboxType: (gearboxType?: "automatic" | "manual") => void;
   setMinHorsePower: (minHorsePower?: number) => void;
-  setOnlyElectric: (isElectric?: boolean) => void;
+  setOnlyElectric: (onlyElectric?: boolean) => void;
   setMinPrice: (minPrice?: number) => void;
   setMaxPrice: (maxPrice?: number) => void;
   setPassengerCount: (minPassengersCount?: number) => void;
@@ -34,7 +34,10 @@ interface CarQueryStore {
 }
 
 const useCarQueryStore = create<CarQueryStore>((set) => ({
-  carQuery: { buyOrLease: "buy", isElectric: false, pageSize: 10 } as CarQuery,
+  carQuery: {
+    buyOrLease: "buy",
+    pageSize: 10,
+  } as CarQuery,
   toggleBuyOrLease: () =>
     set((store) => ({
       carQuery: {
