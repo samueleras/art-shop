@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { CarQuery } from "../stores/carqueryStore";
 
 /* export interface FetchDataResponse<T> {
   data: T;
@@ -17,8 +18,10 @@ class APIClient<T> {
     this.endpoint = endpoint;
   }
 
-  getAll = (config?: AxiosRequestConfig) =>
-    axiosInstance.get<T[]>(this.endpoint, config).then((res) => res.data);
+  getAll = (carQuery: CarQuery, config?: AxiosRequestConfig) =>
+    axiosInstance
+      .post<T[]>(this.endpoint, carQuery, config)
+      .then((res) => res.data);
 
   get = (id: String, config?: AxiosRequestConfig) => {
     if (id === undefined) return {} as T;
