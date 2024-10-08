@@ -2,9 +2,11 @@ import { Grid } from "@chakra-ui/react";
 import useCars from "../hooks/useCars";
 import CarCard from "./CarCard";
 import CarCardSekelton from "./CarCardSkeleton";
+import useCarQueryStore from "../stores/carqueryStore";
 
 const CarGrid = () => {
-  const { data, error, isFetching } = useCars();
+  const { carQuery } = useCarQueryStore();
+  const { data, error, isFetching } = useCars(carQuery);
   const skeletons = Array.from(Array(20).keys());
 
   if (error) throw error;
