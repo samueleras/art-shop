@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Grid, Text } from "@chakra-ui/react";
 import useCars from "../hooks/useCars";
 import CarCard from "./CarCard";
 import CarCardSekelton from "./CarCardSkeleton";
@@ -20,6 +20,7 @@ const CarGrid = () => {
       {data?.map((car) => (
         <CarCard car={car} key={car._id + ""} />
       ))}
+      {data?.length === 0 && <Text>No cars found.</Text>}
     </Grid>
   );
 };
