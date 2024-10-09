@@ -64,13 +64,7 @@ const useCarQueryStore = create<CarQueryStore>((set) => ({
   setSortOrder: (sortOrder) =>
     set((store) => ({ carQuery: { ...store.carQuery, sortOrder } })),
   setSearchText: (searchText) =>
-    set((store) => ({
-      carQuery: {
-        searchText,
-        pageSize: store.carQuery.pageSize,
-        buyOrLease: store.carQuery.buyOrLease,
-      },
-    })),
+    set((store) => ({ carQuery: { ...store.carQuery, searchText } })),
   setPageSize: (pageSize) =>
     set((store) => ({
       carQuery: {
