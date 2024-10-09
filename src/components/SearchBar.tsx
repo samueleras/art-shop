@@ -1,5 +1,5 @@
 import { CloseButton, Collapse, Flex, Input } from "@chakra-ui/react";
-import { useEffect, useRef } from "react";
+import useCarQueryStore from "../stores/carqueryStore";
 
 interface Props {
   isOpen: boolean;
@@ -7,19 +7,13 @@ interface Props {
 }
 
 const SearchBar = ({ isOpen, onClick }: Props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.value = "";
-    }
-  }, []);
+  const { setSearchText, carQuery } = useCarQueryStore();
 
   return (
     <Collapse in={isOpen} animateOpacity>
       <Flex backgroundColor={"teal.500"} shadow="md" padding=".5rem">
         <Input
           type="text"
-          ref={inputRef}
           placeholder="Search..."
           variant="unstyled"
           color="gray.700"
@@ -28,13 +22,13 @@ const SearchBar = ({ isOpen, onClick }: Props) => {
               color: "gray.700",
             },
           }}
+          value={carQuery.searchText || ""}
+          onChange={(event) => setSearchText(event.target.value)}
         />
         <CloseButton
           onClick={() => {
             onClick();
-            if (inputRef.current) {
-              inputRef.current.value = "";
-            }
+            setSearchText("");
           }}
         />
       </Flex>
