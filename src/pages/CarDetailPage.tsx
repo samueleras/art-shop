@@ -86,11 +86,11 @@ const CarDetailPage = () => {
         </Stack>
       </Card>
       <Text p="2rem">
-        {"Kraftstoffverbrauch (gewichtet kombiniert): " + car.fuelConsumption}
+        {"Fuel consumption (combined): " + car.fuelConsumption}
         <br />
-        {"CO2-Emissionen (gewichtet kombiniert): " + car.emissions}
+        {"CO2 emissions (combined): " + car.emissions}
         <br />
-        {"CO2-Klasse (gewichtet kombiniert): " + car.emissionClass}
+        {"CO2 class (combined): " + car.emissionClass}
       </Text>
       <ImageGallery car={car} />
     </>
