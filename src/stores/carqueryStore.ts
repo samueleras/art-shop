@@ -1,16 +1,26 @@
 import { create } from "zustand";
 
+export type VehicleType = "suv" | "coupe" | "convertible" | "sedan";
+export type BuyOrLease = "buy" | "lease";
+export type GearboxType = "automatic" | "manual";
+export type SortOrder =
+  | "brandDesc"
+  | "brandAsc"
+  | "priceDesc"
+  | "priceAsc"
+  | "horsepowerDesc"
+  | "horsepowerAsc";
 export interface CarQuery {
-  buyOrLease: "buy" | "lease";
-  vehicleType?: "suv" | "coupe" | "convertible" | "sedan";
-  gearboxType?: "automatic" | "manual";
+  buyOrLease: BuyOrLease;
+  vehicleType?: VehicleType;
+  gearboxType?: GearboxType;
   minHorsePower?: number;
   onlyElectric?: boolean;
   minPrice?: number;
   maxPrice?: number;
   passengerCount?: number;
   doorCount?: number;
-  sortOrder?: string;
+  sortOrder?: SortOrder;
   searchText?: string;
   pageSize?: number;
 }
@@ -28,15 +38,15 @@ interface CarQueryStore {
   setMaxPrice: (maxPrice?: number) => void;
   setPassengerCount: (minPassengersCount?: number) => void;
   setDoorCount: (minPassengersCount?: number) => void;
-  setSortOrder: (sortOrder?: string) => void;
+  setSortOrder: (sortOrder?: SortOrder) => void;
   setSearchText: (searchText?: string) => void;
-  setPageSize: (pageSize?: number) => void;
 }
 
 const useCarQueryStore = create<CarQueryStore>((set) => ({
   carQuery: {
     buyOrLease: "buy",
-    pageSize: 10,
+    pageSize: 20,
+    sortOrder: "horsepowerDesc",
   } as CarQuery,
   toggleBuyOrLease: () =>
     set((store) => ({
@@ -65,14 +75,6 @@ const useCarQueryStore = create<CarQueryStore>((set) => ({
     set((store) => ({ carQuery: { ...store.carQuery, sortOrder } })),
   setSearchText: (searchText) =>
     set((store) => ({ carQuery: { ...store.carQuery, searchText } })),
-  setPageSize: (pageSize) =>
-    set((store) => ({
-      carQuery: {
-        ...store.carQuery,
-        pageSize,
-        buyOrLease: store.carQuery.buyOrLease,
-      },
-    })),
 }));
 
 export default useCarQueryStore;
