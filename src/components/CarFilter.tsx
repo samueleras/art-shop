@@ -24,16 +24,15 @@ import { GiCarDoor, GiHorseHead } from "react-icons/gi";
 import { IoMdPerson } from "react-icons/io";
 import { MdElectricCar } from "react-icons/md";
 import { TbAutomaticGearbox, TbManualGearbox } from "react-icons/tb";
-import useCarQueryStore from "../stores/carqueryStore";
+import useCarQueryStore, {
+  SortOrder,
+  VehicleType,
+} from "../stores/carqueryStore";
 import FilterContainer from "./FilterContainer";
 
 const CarFilter = () => {
-  //get List of Filters including icons
-  // const { data, error, isFetching } = useFilters();
   const query = useCarQueryStore();
   const color = useColorModeValue("gray.700", "gray.100");
-
-  //if (error) throw error;
 
   return (
     <>
@@ -48,6 +47,23 @@ const CarFilter = () => {
         padding="0.5rem"
       >
         <FilterContainer icon={FaCar} color={color}>
+          <Text>Order</Text>
+          <Select
+            size={"sm"}
+            onChange={(event) => {
+              query.setSortOrder(event.target.value as SortOrder);
+            }}
+            value={query.carQuery.sortOrder}
+          >
+            <option value="brandDesc">Brand Desc</option>
+            <option value="brandAsc">Brand Asc</option>
+            <option value="priceDesc">Price Desc</option>
+            <option value="priceAsc">Price Asc</option>
+            <option value="horsepowerDesc">HP Desc</option>
+            <option value="horsepowerAsc">HP Asc</option>
+          </Select>
+        </FilterContainer>
+        <FilterContainer icon={FaCar} color={color}>
           <Text>Type</Text>
           <Select
             size={"sm"}
@@ -55,12 +71,7 @@ const CarFilter = () => {
               query.setVehicleType(
                 event.target.value == "any"
                   ? undefined
-                  : (event.target.value as
-                      | undefined
-                      | "coupe"
-                      | "convertible"
-                      | "suv"
-                      | "sedan")
+                  : (event.target.value as VehicleType)
               );
             }}
             value={query.carQuery.vehicleType || "any"}
@@ -68,7 +79,6 @@ const CarFilter = () => {
             <option value="any">Any</option>
             <option value="coupe">Coupe</option>
             <option value="convertible">Convertible</option>
-            <option value="suv">SUV</option>
             <option value="sedan">Sedan</option>
           </Select>
         </FilterContainer>
