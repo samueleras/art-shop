@@ -2,7 +2,7 @@ export default interface Car {
   _id: String;
   brand: string;
   model: string;
-  type: "coupe" | "convertible" | "suv" | "sedan";
+  type: "coupe" | "convertible" | "sedan";
   price: number;
   leasing: number;
   passengerCount: number;
